@@ -50,7 +50,7 @@ export default async function Header() {
         margin: "10px 0px 10px 0px",
         paddingTop: "5px",
         paddingBottom: "5px",
-        boxShadow: "1px 4px 8px 0px rgba(34, 60, 80, 0.2)",
+        border: "1px solid #f0f0f0",
       }}
     >
       <Row
@@ -59,10 +59,10 @@ export default async function Header() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          gap: "10px",
         }}
       >
-        <Col xs={mobile} md={mobile} lg={{ flex: "10%" }} xl={{ flex: "15%" }}>
-          <Flex justify="center" align="baseline">
+        <Col xs={{...mobile,order:1}} md={{...mobile,order:1}} lg={{ flex: "10%",order:1 }} xl={{ flex: "15%",order:1 }}> <Flex justify="center" align="baseline">
             <Button
               icon={
                 <Image
@@ -78,7 +78,7 @@ export default async function Header() {
           </Flex>
         </Col>
 
-        <Col lg={{ flex: "auto" }}>
+        <Col xs={{...mobile,order:3}} md={{...mobile,order:3}} lg={{ flex: "auto",order:2 }}>
           <Row
             gutter={{ lg: 10 }}
             style={{
@@ -147,7 +147,7 @@ export default async function Header() {
           </Row>
         </Col>
 
-        <Col xs={mobile} md={mobile} lg={{ flex: "15%" }} xl={{ flex: "15%" }}>
+        <Col xs={{...mobile,order:2}} md={{...mobile,order:2}} lg={{ flex: "15%",order:3 }} xl={{ flex: "15%",order:3 }}>
           <Dropdown menu={{ items: accountItems }}>
             <Flex justify="center">
               <Image src={"/login.svg"} width={24} height={24} alt="account" />
