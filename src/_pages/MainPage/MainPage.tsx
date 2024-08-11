@@ -8,7 +8,7 @@ export async function MainPage({ params }: { params: any }) {
     <>
       <Providers>
         <header>
-            <Header/>
+            <Header {...params}/>
         </header>
         <section>
 
