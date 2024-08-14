@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui --coverage",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.0",
@@ -28,10 +29,12 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@vitejs/plugin-react": "^4.3.1",
+    "@vitest/coverage-v8": "^2.0.5",
     "@vitest/ui": "^2.0.5",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "jsdom": "^24.1.1",
+    "msw": "^2.3.5",
     "sass": "^1.77.8",
     "typescript": "^5",
     "vite-plugin-magical-svg": "^1.3.0",

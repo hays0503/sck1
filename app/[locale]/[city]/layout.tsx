@@ -1,3 +1,4 @@
+import { UrlApiWithDomain } from "@/shared/api/url";
 import type { Metadata } from "next";
 import { unstable_setRequestLocale } from "next-intl/server";
 
@@ -6,36 +7,24 @@ export const metadata: Metadata = {
   description: "Сайт в разработке dev.SCK-1.kz",
 };
 
-const City = [
-  {
-    id: 1,
-    additional_data: {
-      EN: "Petropavlovsk",
-      KZ: "",
-    },
-    name_city: "Петропавловск",
-  },
-  {
-    id: 2,
-    additional_data: {
-      EN: "Astana",
-      KZ: "",
-    },
-    name_city: "Астана",
-  },
-];
 
-export function generateStaticParams() {
-  const city = City.map((i)=>({city:i.additional_data.EN})); 
+export async function generateStaticParams() {
+  const fetchCity = await (await fetch(UrlApiWithDomain.getCity,{
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  })).json();
+  const city = fetchCity.map((i:any)=>({city:i.additional_data.EN}));
   return city
 }
 
 export default async function RootLayout({
   children,
-  params: { locale},
+  params: { locale,city},
 }: {
   children: React.ReactNode;
-  params: { locale: string};
+  params: { locale: string,city:string};
 }) {
   unstable_setRequestLocale(locale);
   return (

@@ -1,22 +1,33 @@
 "use server";
 
-import { Providers } from "@/_app/providers/providers";
-import { Header } from "@/widgets/Header";
+import { ProvidersClient } from "@/_app/providers/providersClient";
+import { ProvidersServer } from "@/_app/providers/providersServer";
+import {UrlApi, UrlApiWithDomain} from "@/shared/api/url";
+import ComponentHeader from "@/widgets/ComponentHeader/ui/ComponentHeader";
 
 export async function MainPage({ params }: { params: any }) {
+  const fetchCity = await (
+    await fetch(UrlApiWithDomain.getCity, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+  ).json();
+
+  const fallback = {
+    [UrlApi.getCity]: fetchCity,
+  };
+
   return (
     <>
-      <Providers>
-        <header>
-            <Header {...params}/>
-        </header>
-        <section>
-
-        </section>
-        <footer>
-
-        </footer>
-      </Providers>
+      <ProvidersServer>
+        <ProvidersClient fallback={fallback}>
+          <header><ComponentHeader params={params} /></header>
+          <section></section>
+          <footer></footer>
+        </ProvidersClient>
+      </ProvidersServer>
     </>
   );
 }

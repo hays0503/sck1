@@ -15,6 +15,14 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+      source: "/api/v1/citys",
+      destination: "http://pimenov.kz/api/v1/citys/",
+      }
+    ];
+  },
 };
 
 module.exports = withNextIntl(nextConfig);

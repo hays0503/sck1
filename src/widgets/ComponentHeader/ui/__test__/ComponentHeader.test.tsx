@@ -10,11 +10,10 @@ import {
 import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { NextIntlClientProvider } from "next-intl";
-import Header from "../Header";
-// import messages from "$/messages/ru.json";
 import * as matchers from "@testing-library/jest-dom/matchers";
 import { cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
+import ComponentHeader from "@/widgets/ComponentHeader/ui/ComponentHeader.tsx";
 
 beforeAll(() => {
   Object.defineProperty(window, "matchMedia", {
@@ -39,7 +38,7 @@ afterEach(() => {
   cleanup();
 });
 
-describe("Тестирование Header", () => {
+describe("Тестирование Header с Локализацией на русском", () => {
 
   beforeEach(async () => {
     const Local = "ru";
@@ -58,10 +57,10 @@ describe("Тестирование Header", () => {
     }));
 
     const messages = (await import(`$/messages/${Local}.json`)).default;
-
+    const params = { locale: Local, city: 'Astana' };
     render(
       <NextIntlClientProvider messages={messages} locale={Local}>
-        <Header />
+        <ComponentHeader params={params}/>
       </NextIntlClientProvider>
     );
   });

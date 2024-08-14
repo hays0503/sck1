@@ -1,4 +1,4 @@
-import { Providers } from "@/_app/providers/providers";
+import { ProvidersServer } from "@/_app/providers/providersServer";
 import type { Metadata } from "next";
 import { unstable_setRequestLocale } from "next-intl/server";
 
@@ -9,24 +9,22 @@ export const metadata: Metadata = {
 
 const locales = ["en", "ru", "kz"];
 
-
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
-
 }
 
 export default async function RootLayout({
   children,
-  params: { locale},
+  params: { locale },
 }: {
   children: React.ReactNode;
-  params: { locale: string};
+  params: { locale: string };
 }) {
   unstable_setRequestLocale(locale);
   return (
     <html lang={locale}>
       <body>
-        <Providers>{children}</Providers>
+        <ProvidersServer>{children}</ProvidersServer>
       </body>
     </html>
   );
