@@ -8,16 +8,19 @@ import ComponentSelectCityList from "./ui/ComponentSelectCityList";
 import useSelectCurrentCity from "@/shared/hook/useSelectCurrentCity";
 import { selectDataByLangCity } from "@/shared/tools/selectDataByLang";
 import searchCity from "@/shared/tools/searchCity";
+import { iCity } from "@/shared/types/city";
 
 const { Text } = Typography;
 const { Search } = Input;
 
 export default function ComponentSelectCity({ params }: { params: any }) {
-  const cities = useFetcherCity().data;
+  const cities:iCity[] = useFetcherCity().data??[];
   const [isOpen, setIsOpen] = useState(false);
   const [citiesSearch, setCitiesSearch] = useState(cities);
   const city = useSelectCurrentCity("en", params.city);
   const LangCity = selectDataByLangCity(city, params.locale);
+
+  // console.log("City",cities)
 
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
@@ -32,12 +35,11 @@ export default function ComponentSelectCity({ params }: { params: any }) {
   return (
     <>
       <Button
-        data-testid="openModalCity"
         onClick={() => setIsOpen(true)}
         icon={<Image src={"/place.svg"} width={24} height={24} alt="account" />}
       >
-        <Text>
-          <b>{LangCity}</b>
+        <Text strong={true} data-testid="select-city">
+          {LangCity}
         </Text>
       </Button>
       <Modal 
@@ -52,7 +54,7 @@ export default function ComponentSelectCity({ params }: { params: any }) {
           </Row>
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             <Col span={24}>
-              <Search onChange={onSearch} style={{ width: "320px" }} />
+              <Search data-testid="search-city" onChange={onSearch} style={{ width: "320px" }} />
             </Col>
           </Row>
           <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>

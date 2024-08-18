@@ -1,72 +1,51 @@
+import "@/shared/mock/matchMedia.mock"
 import {
   describe,
   test,
-  vi,
-  beforeAll,
+  jest,
   expect,
   afterEach,
   beforeEach,
-} from "vitest"; // Добавлен beforeAll
-import { render, screen, fireEvent } from "@testing-library/react";
+} from "@jest/globals";
+import { render, screen, fireEvent  } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { NextIntlClientProvider } from "next-intl";
-import * as matchers from "@testing-library/jest-dom/matchers";
 import { cleanup } from "@testing-library/react";
-import "@testing-library/jest-dom/vitest";
 import ComponentHeader from "@/widgets/ComponentHeader/ui/ComponentHeader.tsx";
-
-beforeAll(() => {
-  Object.defineProperty(window, "matchMedia", {
-    writable: true,
-    value: vi.fn().mockImplementation((query) => ({
-      matches: false,
-      media: query,
-      onchange: null,
-      addListener: vi.fn(), // устаревший метод
-      removeListener: vi.fn(), // устаревший метод
-      addEventListener: vi.fn(),
-      removeEventListener: vi.fn(),
-      dispatchEvent: vi.fn(),
-    })),
-  });
-});
-
-
-expect.extend(matchers);
+import messages from "../../../../../messages/ru.json";
 
 afterEach(() => {
   cleanup();
 });
 
 describe("Тестирование Header с Локализацией на русском", () => {
-
   beforeEach(async () => {
     const Local = "ru";
-    vi.mock("next/navigation", () => ({
+    jest.mock("next/navigation", () => ({
       usePathname: () => "/",
       useRouter: () => ({
-        back: vi.fn(),
-        forward: vi.fn(),
-        refresh: vi.fn(),
-        push: vi.fn(),
-        prefetch: vi.fn(),
-        replace: vi.fn(),
+        back: jest.fn(),
+        forward: jest.fn(),
+        refresh: jest.fn(),
+        push: jest.fn(),
+        prefetch: jest.fn(),
+        replace: jest.fn(),
       }),
       useParams: () => ({ locale: Local }),
       useSelectedLayoutSegment: () => ({ locale: Local }),
     }));
 
-    const messages = (await import(`$/messages/${Local}.json`)).default;
-    const params = { locale: Local, city: 'Astana' };
+    // const messages = (await import(`@/messages/${Local}.json`)).default;
+    // const messages = (await import(`../<rootDir>/messages/${Local}.json`)).default;
+    const params = { locale: Local, city: "Astana" };
     render(
       <NextIntlClientProvider messages={messages} locale={Local}>
-        <ComponentHeader params={params}/>
+        <ComponentHeader params={params} />
       </NextIntlClientProvider>
     );
   });
 
   test("Рендер Header и проверка содержимого", () => {
-
     expect(screen.getByText("Личный кабинет")).toBeDefined();
     expect(screen.getByText("Отзывы")).toBeDefined();
     expect(screen.getByText("Доставка")).toBeDefined();
@@ -79,20 +58,20 @@ describe("Тестирование Header с Локализацией на ру�
   });
 
   test("Найдена страница Аккаунт", async () => {
-    const accountButton = screen.getByText("Личный кабинет");
-    userEvent.click(accountButton);
+    const accountButton = await screen.findByText("Личный кабинет");
+    await userEvent.click(accountButton);
     expect(await screen.findByText("Аккаунт")).toBeDefined();
   });
 
   test("Найдена компонент Выбрать тему", async () => {
-    const accountButton = screen.getByText("Личный кабинет");
-    userEvent.click(accountButton);
+    const accountButton = await screen.getByText("Личный кабинет");
+    await userEvent.click(accountButton);
     expect(await screen.findByText("Выбрать тему")).toBeDefined();
   });
 
   test("Найдена компонент Выбрать язык", async () => {
-    const accountButton = screen.getByText("Личный кабинет");
-    userEvent.click(accountButton);
+    const accountButton = await screen.getByText("Личный кабинет");
+    await userEvent.click(accountButton);
     expect(await screen.findByText("Русский")).toBeDefined();
   });
 });

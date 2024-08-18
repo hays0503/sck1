@@ -10,7 +10,7 @@ export default function ComponentSelectCityList({cities}: {cities: iCity[]}) {
     <>
       <Space size={[8, 16]} wrap>
         {cities?.map((city: iCity) => (
-          <Button key={city.id}>
+          <Button key={city.id} data-testid="btn-city">
               {selectDataByLangCity(city, currentLocale)}
           </Button>
         ))}

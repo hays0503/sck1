@@ -2,11 +2,17 @@ import { iCity } from "../types/city";
 import { selectDataByLangCity } from "./selectDataByLang";
 
 const searchCity = (value: string, cities: iCity[], locale: string) => {
-  const filteredCities = cities.filter((item_city: any) =>
-    selectDataByLangCity(item_city, locale)
-      .toLowerCase()
-      .includes(value.toLowerCase())
-  );
-  return filteredCities;
+  if (!cities || !Array.isArray(cities) || cities.length === 0) {
+    return [];
+  }
+
+  if (!locale) {
+    return [];
+  }
+
+  return cities.filter((city: iCity) => {
+    const cityName = selectDataByLangCity(city, locale);
+    return cityName?.toLowerCase().includes(value.toLowerCase()) ?? false;
+  });
 };
 export default searchCity;

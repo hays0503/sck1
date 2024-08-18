@@ -177,7 +177,7 @@ const selectDataByLangCity = (
     case "kz":
       return object.additional_data.KZ;
     default:
-      return object.name_city;
+      return undefined;
   }
 };
 
