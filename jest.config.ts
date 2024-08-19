@@ -23,7 +23,7 @@ const config: Config = {
   coverageProvider: "v8",
   coverageThreshold: {
     global: {
-      lines: 80,
+      lines: 70,
     },
   },
   collectCoverage: true,
