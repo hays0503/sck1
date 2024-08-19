@@ -8,7 +8,7 @@ on:
             - main
 jobs:
     coverage:
-        runs-on: self-hosted
+        runs-on: hays-linux
         steps:
             - uses: actions/checkout@v3
             - uses: ArtiomTr/jest-coverage-report-action@v2
