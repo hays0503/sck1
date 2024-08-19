@@ -16,10 +16,13 @@ jobs:
         - name: Set up Node.js
           uses: actions/setup-node@v3
           with:
-             node-version: '18.x'
+             node-version: '20.x'
     
         - name: Install dependencies
           run: npm install
     
-        - name: Run Jest tests and coverage
-          uses: ArtiomTr/jest-coverage-report-action@v2.3.0
+        - name: Run tests
+          run: npx jest --coverage --coverageReporters json-summary
+
+        - name: Jest Coverage Comment
+          uses: MishaKav/jest-coverage-comment@main
