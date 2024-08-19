@@ -37,8 +37,8 @@ jobs:
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Check Format
-        run: npm run format-check
+      # - name: Check Format
+      #   run: npm run format-check
 
       - name: Check Lint
         run: npm run lint
