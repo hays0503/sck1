@@ -24,14 +24,14 @@ jobs:
     
       - name: Install dependencies
         run: npm install
-      - name: NPM Cache
-        id: npm-cache
-        uses: actions/cache@v3
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm
+      # - name: NPM Cache
+      #   id: npm-cache
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: '**/node_modules'
+      #     key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-npm
 
       - name: Install Dependencies
         if: steps.npm-cache.outputs.cache-hit != 'true'
