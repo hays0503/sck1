@@ -8,13 +8,21 @@ on:
       - 'data/**'
       - 'dist/**'
 
-jobs:
+jobs:        
   update-coverage-in-readme:
     name: Update Coverage in README
-    runs-on: ubuntu-latest
+    runs-on: hays-linux
     steps:
+    
       - uses: actions/checkout@v3
-
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+           node-version: '20.x'
+    
+      - name: Install dependencies
+        run: npm install
       - name: NPM Cache
         id: npm-cache
         uses: actions/cache@v3
