@@ -1,12 +1,13 @@
 name: Update Coverage in README
 on:
+  workflow_dispatch:
   push:
-    paths-ignore:
-      - '**/*.md'
-      - '**/*.yml'
-      - '.github/**'
-      - 'data/**'
-      - 'dist/**'
+      paths-ignore:
+        - '**/*.md'
+        - '**/*.yml'
+        - '.github/**'
+        - 'data/**'
+        - 'dist/**'
 
 jobs:        
   update-coverage-in-readme:
