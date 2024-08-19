@@ -23,5 +23,3 @@ jobs:
     
         - name: Run Jest tests and coverage
           uses: ArtiomTr/jest-coverage-report-action@v2.3.0
-          with:
-            # Additional configuration if required
