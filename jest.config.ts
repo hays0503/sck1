@@ -29,7 +29,18 @@ const config: Config = {
   collectCoverage: true,
   // coverageReporters: ["json", "html"],
   coverageReporters: ["text", "cobertura"],
-  reporters: ["default", "jest-junit"],
+  reporters: [
+    "default",
+    "jest-junit",
+    [
+      "jest-html-reporter",
+      {
+        outputPath: "./reports/test-report.html",
+        pageTitle: "Automation Test with askui",
+        includeFailureMsg: true,
+      },
+    ],
+  ],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

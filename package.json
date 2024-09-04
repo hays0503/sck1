@@ -13,16 +13,18 @@
     "nyc": "nyc npm run test",
     "nuc:report": "nyc --reporter=lcov --reporter=text-summary",
     "jest-junit": "jest --ci --reporters=default --reporters=jest-junit"
-
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.0",
+    "@types/ua-parser-js": "^0.7.39",
+    "@uidotdev/usehooks": "^2.4.1",
     "antd": "^5.19.3",
     "next": "14.2.5",
     "next-intl": "^3.17.2",
     "react": "^18",
     "react-dom": "^18",
     "swr": "^2.2.5",
+    "ua-parser-js": "^1.0.38",
     "zustand": "^4.5.4"
   },
   "devDependencies": {
@@ -38,6 +40,7 @@
     "eslint-config-next": "14.2.5",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "jest-html-reporter": "^3.10.2",
     "jest-junit": "^16.0.0",
     "jsdom": "^24.1.1",
     "msw": "^2.3.5",

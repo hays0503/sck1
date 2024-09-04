@@ -2,12 +2,16 @@ import { useEffect } from "react";
 import useFetcherCity from "../api/fetch/city";
 import selectCurrentCity from "../tools/selectCurrentCity";
 
-export default function useSelectCurrentCity(locale: string, NameCity: string) {
+export default function useSelectCurrentCity(
+  locale: string, NameCity: string
+) {
   const { data: cities } = useFetcherCity();
 
   useEffect(() => {}, [cities]);
 
-  if (!cities) return undefined;
+  if (!cities) {
+    return undefined;
+  }
 
   switch (locale) {
     case "ru":

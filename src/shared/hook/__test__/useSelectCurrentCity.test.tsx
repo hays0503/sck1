@@ -1,12 +1,12 @@
 import "@/shared/mock/matchMedia.mock";
 import { UrlApi } from "@/shared/api/url";
 import { afterEach, test, expect } from "@jest/globals";
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import { HttpResponse, http } from "msw";
 import { setupServer } from "msw/node";
 import getCityFromMockData from "@/shared/mock/getCityFromMockData";
 import useSelectCurrentCity from "../useSelectCurrentCity";
-import { useEffect } from "react";
+
 
 const server = setupServer(
   http.get(`${UrlApi.getCity}`, ({ params, request }) => {
@@ -59,3 +59,23 @@ test("Запрос текущего города изходя из локали 
     expect(data).toBe("Караганда");
   });
 });
+
+test("Обработка неожиданного поведения локали", async () => {
+  const { rerender } = render(
+    <TestComponent params={{ locale: "undefined", city: "Karaganda" }} />
+  );
+  const data = screen.findByText("undefined");
+  data.then((data) => {
+    expect(data).toBe("undefined");
+  });
+})
+
+test("Обработка неожиданного поведения адреса неизвестном городе", async () => {
+  const { rerender } = render(
+    <TestComponent params={{ locale: "ru", city: "undefined" }} />
+  );
+  const data = screen.findByText("undefined");
+  data.then((data) => {
+    expect(data).toBe("undefined");
+  });
+})

@@ -1,27 +1,17 @@
 import "@/shared/mock/matchMedia.mock";
 import { UrlApi } from "@/shared/api/url";
-import { iCity } from "@/shared/types/city";
-import { afterEach, test } from "@jest/globals";
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
-import { HttpResponse , http } from "msw";
+import { afterEach, beforeAll, afterAll, test, expect } from "@jest/globals";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { HttpResponse, http } from "msw";
 import { setupServer } from "msw/node";
 import { NextIntlClientProvider } from "next-intl";
 import ComponentSelectCity from "@/features/ComponentSelectCity/ui/ComponentSelectCity";
 import getCityFromMockData from "@/shared/mock/getCityFromMockData";
 
 const server = setupServer(
-  http.get(
-    `${UrlApi.getCity}`,
-    ({params,request}) => {
-      return HttpResponse.json(getCityFromMockData())
-    }
-  )
+  http.get(`${UrlApi.getCity}`, ({ params, request }) => {
+    return HttpResponse.json(getCityFromMockData());
+  })
 );
 
 beforeAll(() => server.listen());
@@ -76,11 +66,32 @@ test("Фильтрация городов при поиске", async () => {
     expect(isOpen).toBeVisible();
   });
 
+  // Проверяем все города (En)
+  await waitFor(() => {
+    getCityFromMockData().forEach(async (city) => {
+      await waitFor(() => {
+        const elements = screen.queryByText(city.additional_data.EN)?.innerHTML;
+        expect(elements).toContain(city.additional_data.EN);
+      });
+    });
+  });
+
   const searchInput = screen.getByTestId("search-city");
   fireEvent.change(searchInput, { target: { value: "Karaganda" } });
 
   await waitFor(() => {
     const btns = screen.getAllByTestId("btn-city");
-    expect(screen.getByText("Karaganda")).toBeInTheDocument();
+    expect(btns).toHaveLength(1);
+    expect(btns[0]).toHaveTextContent("Karaganda");
+    expect(btns[0]).not.toHaveTextContent("Astana");
   });
+
+  // Очищаем строку поиска
+  fireEvent.change(searchInput, { target: { value: " " } });
+
+  await waitFor(() => {
+    const btns = screen.getAllByTestId("btn-city");
+    expect(btns).toHaveLength(getCityFromMockData().length);
+  });
+
 });

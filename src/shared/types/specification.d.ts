@@ -25,12 +25,12 @@ export interface ValueSpecification {
 }
 
 
-export type SpecificationNameSpecificationparams = {
-    (object:Specification | null,currentLang: "ru" | "en" | "kz" | string): string;
-    (object:NameSpecification,currentLang: "ru" | "en" | "kz" | string): string;
+export type SpecificationNameSpecificationParams = {
+    (object:Specification | null,currentLang: "ru" | "en" | "kz" | string): string|undefined;
+    (object:NameSpecification,currentLang: "ru" | "en" | "kz" | string): string|undefined;
 };
 
-export type SpecificationValueSpecificationparams = {
-    (object:Specification | null,currentLang: "ru" | "en" | "kz" | string): string;
-    (object:ValueSpecification,currentLang: "ru" | "en" | "kz" | string): string;
+export type SpecificationValueSpecificationParams = {
+    (object:Specification | null,currentLang: "ru" | "en" | "kz" | string): string|undefined;
+    (object:ValueSpecification,currentLang: "ru" | "en" | "kz" | string): string|undefined;
 };

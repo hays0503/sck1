@@ -26,9 +26,10 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string,city:string};
 }) {
+
   unstable_setRequestLocale(locale);
   return (
-    <html lang={locale}>
+    <html lang={locale} >
       <body>
         {children}
       </body>

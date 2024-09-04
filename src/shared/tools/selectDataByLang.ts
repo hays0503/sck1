@@ -6,7 +6,7 @@ import { ProductsDetail } from "../types/productsDetail";
 import {
   NameSpecification,
   Specification,
-  SpecificationNameSpecificationparams,
+  SpecificationNameSpecificationParams,
   ValueSpecification,
 } from "../types/specification";
 import { iCity } from "../types/city";
@@ -15,7 +15,7 @@ const selectDataByLangCategory = (
   object: Category | null | undefined,
   currentLang: "ru" | "en" | "kz" | string
 ) => {
-  if (!object) return "";
+  if (!object) return undefined;
   switch (currentLang) {
     case "ru":
       return object.name_category;
@@ -24,7 +24,7 @@ const selectDataByLangCategory = (
     case "kz":
       return object.additional_data.KZ;
     default:
-      return object.name_category;
+      return undefined;
   }
 };
 
@@ -32,16 +32,16 @@ const selectDataByLangBrands = (
   object: Brands,
   currentLang: "ru" | "en" | "kz" | string
 ) => {
-  if (!object) return "";
+  if (!object) return undefined;
   switch (currentLang) {
     case "ru":
       return object.name_brand;
     case "en":
-      return object.additional_data.EN || object.name_brand;
+      return object.additional_data.EN;
     case "kz":
-      return object.additional_data.KZ || object.name_brand;
+      return object.additional_data.KZ;
     default:
-      return object.name_brand;
+      return undefined;
   }
 };
 
@@ -49,16 +49,16 @@ const selectDataByLangProducts = (
   object: ProductsDetail | Products | null | undefined,
   currentLang: "ru" | "en" | "kz" | string
 ) => {
-  if (!object) return "";
+  if (!object) return undefined;
   switch (currentLang) {
     case "ru":
       return object.name_product;
     case "en":
-      return object.additional_data.EN || object.name_product;
+      return object.additional_data.EN;
     case "kz":
-      return object.additional_data.KZ || object.name_product;
+      return object.additional_data.KZ;
     default:
-      return object.name_product;
+      return undefined;
   }
 };
 
@@ -66,16 +66,16 @@ const selectDataByLangDescriptionTitle = (
   object: iDescription | null | undefined,
   currentLang: "ru" | "en" | "kz" | string
 ) => {
-  if (!object) return "";
+  if (!object) return undefined;
   switch (currentLang) {
     case "ru":
       return object.title_description;
     case "en":
-      return object.additional_data.EN || object.title_description;
+      return object.additional_data.EN;
     case "kz":
-      return object.additional_data.KZ || object.title_description;
+      return object.additional_data.KZ;
     default:
-      return object.title_description;
+      return undefined;
   }
 };
 
@@ -83,34 +83,34 @@ const selectDataByLangDescriptionBody = (
   object: iDescription | null | undefined,
   currentLang: "ru" | "en" | "kz" | string
 ) => {
-  if (!object) return "";
+  if (!object) return undefined;
   switch (currentLang) {
     case "ru":
       return object.body_description;
     case "en":
-      return object.additional_data_to_desc.EN || object.body_description;
+      return object.additional_data_to_desc.EN;
     case "kz":
-      return object.additional_data_to_desc.KZ || object.body_description;
+      return object.additional_data_to_desc.KZ;
     default:
-      return object.body_description;
+      return ;
   }
 };
 
-const selectDataByLangNameSpecification: SpecificationNameSpecificationparams = (
+const selectDataByLangNameSpecification: SpecificationNameSpecificationParams = (
   object: Specification | NameSpecification | null | undefined,
   currentLang: "ru" | "en" | "kz" | string
-): string => {
-  if (!object) return "";
+): string|undefined => {
+  if (!object) return undefined;
   if ((<Specification>object).product) {
     switch (currentLang) {
       case "ru":
         return (<Specification>object).name_specification.name_specification;
       case "en":
-        return (<Specification>object).name_specification.additional_data.EN || (<Specification>object).name_specification.name_specification;
+        return (<Specification>object).name_specification.additional_data.EN
       case "kz":
-        return (<Specification>object).name_specification.additional_data.KZ || (<Specification>object).name_specification.name_specification;
+        return (<Specification>object).name_specification.additional_data.KZ
       default:
-        return (<Specification>object).name_specification.name_specification;
+        return undefined;
     }
   }
   if((<NameSpecification>object).additional_data){
@@ -118,33 +118,33 @@ const selectDataByLangNameSpecification: SpecificationNameSpecificationparams = 
       case "ru":
         return (<NameSpecification>object).name_specification;
       case "en":
-        return (<NameSpecification>object).additional_data.EN || (<NameSpecification>object).name_specification;
+        return (<NameSpecification>object).additional_data.EN
       case "kz":
-        return (<NameSpecification>object).additional_data.KZ || (<NameSpecification>object).name_specification;
+        return (<NameSpecification>object).additional_data.KZ
       default:
-        return (<NameSpecification>object).name_specification;
+        return undefined;
     }
   }
 
-  return "Данные отсутвуют";
+  return undefined;
 };
 
 const selectDataByLangValueSpecification = (
   object: Specification | ValueSpecification | null | undefined,
   currentLang: "ru" | "en" | "kz" | string
-) => {
-  if (!object) return "";
+):string|undefined => {
+  if (!object) return undefined;
 
   if ((<Specification>object).product) {
     switch (currentLang) {
       case "ru":
         return (<Specification>object).value_specification.value_specification;
       case "en":
-        return (<Specification>object).value_specification.additional_data.EN || (<Specification>object).value_specification.value_specification;
+        return (<Specification>object).value_specification.additional_data.EN
       case "kz":
-        return (<Specification>object).value_specification.additional_data.KZ || (<Specification>object).value_specification.value_specification;
+        return (<Specification>object).value_specification.additional_data.KZ
       default:
-        return (<Specification>object).value_specification.value_specification;
+        return undefined;
     }
   }
   if((<ValueSpecification>object).additional_data){
@@ -152,15 +152,15 @@ const selectDataByLangValueSpecification = (
       case "ru":
         return (<ValueSpecification>object).value_specification;
       case "en":
-        return (<ValueSpecification>object).additional_data.EN || (<ValueSpecification>object).value_specification;
+        return (<ValueSpecification>object).additional_data.EN
       case "kz":
-        return (<ValueSpecification>object).additional_data.KZ || (<ValueSpecification>object).value_specification;
+        return (<ValueSpecification>object).additional_data.KZ
       default:
-        return (<ValueSpecification>object).value_specification;
+        return undefined;
     }
   }
 
-  return "Данные отсутвуют";
+  return undefined;
 
 };
 
@@ -168,7 +168,7 @@ const selectDataByLangCity = (
   object: iCity | null | undefined ,
   currentLang: "ru" | "en" | "kz" | string
 ) => {
-  if (!object) return "";
+  if (!object) return undefined;
   switch (currentLang) {
     case "ru":
       return object.name_city;
@@ -185,7 +185,7 @@ const selectDataByTagProd = (
   object: TagProd | null | undefined,
   currentLang: "ru" | "en" | "kz" | string
 ) => {
-  if (!object) return "";
+  if (!object) return undefined;
   switch (currentLang) {
     case "ru":
       return object.tag_text;
@@ -194,7 +194,7 @@ const selectDataByTagProd = (
     case "kz":
       return object.additional_data.KZ;
     default:
-      return object.tag_text;
+      return undefined;
   }
 };
 

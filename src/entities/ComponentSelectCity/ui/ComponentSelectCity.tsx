@@ -9,6 +9,7 @@ import useSelectCurrentCity from "@/shared/hook/useSelectCurrentCity";
 import { selectDataByLangCity } from "@/shared/tools/selectDataByLang";
 import searchCity from "@/shared/tools/searchCity";
 import { iCity } from "@/shared/types/city";
+import {DownOutlined}from '@ant-design/icons';
 
 const { Text } = Typography;
 const { Search } = Input;
@@ -20,12 +21,10 @@ export default function ComponentSelectCity({ params }: { params: any }) {
   const city = useSelectCurrentCity("en", params.city);
   const LangCity = selectDataByLangCity(city, params.locale);
 
-  // console.log("City",cities)
 
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    const filteredCities = searchCity(value, cities, params.locale);
-    if (filteredCities) {
+    const filteredCities: iCity[] = searchCity(e.target.value, cities, params.locale);
+    if (filteredCities.length) {
       setCitiesSearch(filteredCities);
     } else {
       setCitiesSearch(cities);
@@ -35,12 +34,14 @@ export default function ComponentSelectCity({ params }: { params: any }) {
   return (
     <>
       <Button
+        type={"text"}
         onClick={() => setIsOpen(true)}
         icon={<Image src={"/place.svg"} width={24} height={24} alt="account" />}
       >
         <Text strong={true} data-testid="select-city">
           {LangCity}
         </Text>
+        <DownOutlined />
       </Button>
       <Modal 
       open={isOpen}
