@@ -5,8 +5,9 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { HttpResponse, http } from "msw";
 import { setupServer } from "msw/node";
 import { NextIntlClientProvider } from "next-intl";
-import ComponentSelectCity from "@/features/ComponentSelectCity/ui/ComponentSelectCity";
+
 import getCityFromMockData from "@/shared/mock/getCityFromMockData";
+import ComponentSelectCity from "../ComponentSelectCity";
 
 const server = setupServer(
   http.get(`${UrlApi.getCity}`, ({ params, request }) => {

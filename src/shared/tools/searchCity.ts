@@ -14,8 +14,6 @@ const searchCity = (value: string, cities: iCity[], locale: string) => {
     const cityName = selectDataByLangCity(city, locale);
     return cityName?.toLowerCase().includes(value.toLowerCase()) ?? false;
   });
-
-  console.log("Найдено в searchCity", data.length);
   return data;
 };
 export default searchCity;

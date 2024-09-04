@@ -22,8 +22,12 @@ const nextConfig = {
       destination: "http://pimenov.kz/api/v1/citys/",
       },
       {
-        source: "/api/v1/category/",
+        source: "/api/v1/category",
         destination: "http://pimenov.kz/api/v1/category/",
+      },
+      {
+        source: "/media/product_images/:patch*",
+        destination: "http://pimenov.kz:8000/media/product_images/:patch*/",
       },
 
     ];
