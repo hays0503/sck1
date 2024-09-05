@@ -1,7 +1,7 @@
 import "@/shared/mock/matchMedia.mock";
 import { UrlApi } from "@/shared/api/url";
 import { afterEach, beforeAll, afterAll, test, expect } from "@jest/globals";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { HttpResponse, http } from "msw";
 import { setupServer } from "msw/node";
 import { NextIntlClientProvider } from "next-intl";
@@ -18,7 +18,7 @@ const server = setupServer(
 beforeAll(() => server.listen());
 afterAll(() => {
   server.close();
-  // cleanup();
+  cleanup();
 });
 afterEach(() => server.resetHandlers());
 

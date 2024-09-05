@@ -5,8 +5,8 @@ import {
   selectDataByLangProducts,
   selectDataByLangDescriptionTitle,
   selectDataByLangDescriptionBody,
-  selectDataByLangNameSpecification,
-  selectDataByLangValueSpecification,
+  selectDataByLangSpecificationName,
+  selectDataByLangSpecificationValue,
   selectDataByLangCity,
   selectDataByTagProd,
 } from "../selectDataByLang";
@@ -85,7 +85,7 @@ test("selectDataByLangDescriptionBody должен вернуть тело оп�
   expect(selectDataByLangDescriptionBody(null as any, "ru")).toBe(undefined);
 });
 
-test("selectDataByLangNameSpecification-Specification должен вернуть имя спецификации на основе текущего языка", () => {
+test("selectDataByLangSpecificationName-Specification должен вернуть имя спецификации на основе текущего языка", () => {
   const specification = {
     product: {},
     name_specification: {
@@ -93,22 +93,22 @@ test("selectDataByLangNameSpecification-Specification должен вернут�
       additional_data: { EN: "Specification", KZ: "Сипаттама" },
     },
   } as Specification;
-  expect(selectDataByLangNameSpecification(specification, "ru")).toBe(
+  expect(selectDataByLangSpecificationName(specification, "ru")).toBe(
     "Спецификация"
   );
-  expect(selectDataByLangNameSpecification(specification, "en")).toBe(
+  expect(selectDataByLangSpecificationName(specification, "en")).toBe(
     "Specification"
   );
-  expect(selectDataByLangNameSpecification(specification, "kz")).toBe(
+  expect(selectDataByLangSpecificationName(specification, "kz")).toBe(
     "Сипаттама"
   );
-  expect(selectDataByLangNameSpecification(specification, "undefined")).toBe(
+  expect(selectDataByLangSpecificationName(specification, "undefined")).toBe(
     undefined
   );
-  expect(selectDataByLangNameSpecification(null as any, "ru")).toBe(undefined);
+  expect(selectDataByLangSpecificationName(null as any, "ru")).toBe(undefined);
 });
 
-test("selectDataByLangValueSpecification-Specification должен вернуть значение спецификации на основе текущего языка", () => {
+test("selectDataByLangSpecificationValue-Specification должен вернуть значение спецификации на основе текущего языка", () => {
   const specification = {
     product: {},
     value_specification: {
@@ -116,79 +116,79 @@ test("selectDataByLangValueSpecification-Specification должен вернут
       additional_data: { EN: "Value", KZ: "Мағынасы" },
     },
   } as Specification;
-  expect(selectDataByLangValueSpecification(specification, "ru")).toBe(
+  expect(selectDataByLangSpecificationValue(specification, "ru")).toBe(
     "Значение"
   );
-  expect(selectDataByLangValueSpecification(specification, "en")).toBe("Value");
-  expect(selectDataByLangValueSpecification(specification, "kz")).toBe(
+  expect(selectDataByLangSpecificationValue(specification, "en")).toBe("Value");
+  expect(selectDataByLangSpecificationValue(specification, "kz")).toBe(
     "Мағынасы"
   );
-  expect(selectDataByLangValueSpecification(specification, "undefined")).toBe(
+  expect(selectDataByLangSpecificationValue(specification, "undefined")).toBe(
     undefined
   );
-  expect(selectDataByLangValueSpecification(null as any, "ru")).toBe(undefined);
+  expect(selectDataByLangSpecificationValue(null as any, "ru")).toBe(undefined);
 });
 
-test("selectDataByLangNameSpecification-NameSpecification должен вернуть имя спецификации на основе текущего языка", () => {
+test("selectDataByLangSpecificationName-NameSpecification должен вернуть имя спецификации на основе текущего языка", () => {
   const specification = {
     name_specification: "Спецификация",
     additional_data: { EN: "Specification", KZ: "Сипаттама" },
   } as NameSpecification;
-  expect(selectDataByLangNameSpecification(specification, "ru")).toBe(
+  expect(selectDataByLangSpecificationName(specification, "ru")).toBe(
     "Спецификация"
   );
-  expect(selectDataByLangNameSpecification(specification, "en")).toBe(
+  expect(selectDataByLangSpecificationName(specification, "en")).toBe(
     "Specification"
   );
-  expect(selectDataByLangNameSpecification(specification, "kz")).toBe(
+  expect(selectDataByLangSpecificationName(specification, "kz")).toBe(
     "Сипаттама"
   );
-  expect(selectDataByLangNameSpecification(specification, "undefined")).toBe(
+  expect(selectDataByLangSpecificationName(specification, "undefined")).toBe(
     undefined
   );
-  expect(selectDataByLangNameSpecification(null as any, "ru")).toBe(undefined);
+  expect(selectDataByLangSpecificationName(null as any, "ru")).toBe(undefined);
 });
 
-test("selectDataByLangValueSpecification должен-ValueSpecification вернуть значение спецификации на основе текущего языка", () => {
+test("selectDataByLangSpecificationValue должен-ValueSpecification вернуть значение спецификации на основе текущего языка", () => {
   const specification = {
     value_specification: "Спецификация",
     additional_data: { EN: "Specification", KZ: "Сипаттама" },
   } as ValueSpecification;
-  expect(selectDataByLangValueSpecification(specification, "ru")).toBe(
+  expect(selectDataByLangSpecificationValue(specification, "ru")).toBe(
     "Спецификация"
   );
-  expect(selectDataByLangValueSpecification(specification, "en")).toBe("Specification");
-  expect(selectDataByLangValueSpecification(specification, "kz")).toBe(
+  expect(selectDataByLangSpecificationValue(specification, "en")).toBe("Specification");
+  expect(selectDataByLangSpecificationValue(specification, "kz")).toBe(
     "Сипаттама"
   );
-  expect(selectDataByLangValueSpecification(specification, "undefined")).toBe(
+  expect(selectDataByLangSpecificationValue(specification, "undefined")).toBe(
     undefined
   );
-  expect(selectDataByLangValueSpecification(null as any, "ru")).toBe(undefined);
+  expect(selectDataByLangSpecificationValue(null as any, "ru")).toBe(undefined);
 });
 
-test("selectDataByLangNameSpecification-битые данные должны вернуть undefined", () => {
-    expect(selectDataByLangNameSpecification(null, "undefined")).toBe(
+test("selectDataByLangSpecificationName-битые данные должны вернуть undefined", () => {
+    expect(selectDataByLangSpecificationName(null, "undefined")).toBe(
       undefined
     );
-    expect(selectDataByLangNameSpecification({} as Specification, "undefined")).toBe(
+    expect(selectDataByLangSpecificationName({} as Specification, "undefined")).toBe(
         undefined
     );
 
-    expect(selectDataByLangNameSpecification({} as NameSpecification, "undefined")).toBe(
+    expect(selectDataByLangSpecificationName({} as NameSpecification, "undefined")).toBe(
         undefined
     );
 });
 
-test("selectDataByLangValueSpecification-битые данные должны вернуть undefined", () => {
-    expect(selectDataByLangValueSpecification(null, "undefined")).toBe(
+test("selectDataByLangSpecificationValue-битые данные должны вернуть undefined", () => {
+    expect(selectDataByLangSpecificationValue(null, "undefined")).toBe(
       undefined
     );
-    expect(selectDataByLangValueSpecification({} as Specification, "undefined")).toBe(
+    expect(selectDataByLangSpecificationValue({} as Specification, "undefined")).toBe(
         undefined
     );
 
-    expect(selectDataByLangValueSpecification({} as ValueSpecification, "undefined")).toBe(
+    expect(selectDataByLangSpecificationValue({} as ValueSpecification, "undefined")).toBe(
         undefined
     );
 });

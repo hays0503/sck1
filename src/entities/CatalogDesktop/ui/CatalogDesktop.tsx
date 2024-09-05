@@ -17,6 +17,7 @@ export default function CatalogDesktop({ params }: { params: any }) {
   const t = useTranslations();
   const CategoriesData = useFetcherCategory().data ?? [];
   const [selectCategory, setSelectCategory] = useState<Category>(CategoriesData[0]);
+  const [isOpen, setIsOpen] = useState(true);
 
   return (
     <>
@@ -35,7 +36,6 @@ export default function CatalogDesktop({ params }: { params: any }) {
           <div
             style={{
               display: "flex",
-              // backgroundColor: "#FFFFEF",
               width: "100%",
               height: "100dvh",
             }}
@@ -57,6 +57,7 @@ export default function CatalogDesktop({ params }: { params: any }) {
           </div>
         }
         arrow={false}
+        onOpenChange={() => {setIsOpen(!isOpen)}}
       >
         <Flex
           align="center"
@@ -66,7 +67,7 @@ export default function CatalogDesktop({ params }: { params: any }) {
             backgroundColor: "#3F54CF",
           }}
         >
-          <div className={styles.animationHover}></div>
+          <div className={isOpen?styles.animationHoverOn:styles.animationHoverOff}></div>
           <Divider
             type="vertical"
             dashed={true}
