@@ -157,5 +157,7 @@
   "cost": "Cost:",
   "select": "Select",
   "varianty-ispolneniya-komplektacii": "Execution options (Options)",
-  "v-podarok": "As a gift"
+  "v-podarok": "As a gift",
+  "placeholder-search": "Search for discounted products",
+  "search": "Search"
 }

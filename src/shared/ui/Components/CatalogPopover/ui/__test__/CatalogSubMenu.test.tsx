@@ -11,6 +11,7 @@ import { Category } from "@/shared/types/category";
 import { selectDataByLangCategory } from "@/shared/tools/selectDataByLang";
 
 describe("CatalogSubMenu Проверка на возврат под категории", () => {
+  
   test("Проверка на возврат нужного количества под категорий", async () => {
     const {children: SubCategory}: Category = getCategoriesFromMockData().find(({slug}) => slug === "bytovaya-tehnika")!;
     const lenNavigationElement = SubCategory.reduce(

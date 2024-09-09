@@ -2,7 +2,6 @@ import type { Config } from "jest";
 import nextJest from "next/jest.js";
 
 const createJestConfig = nextJest({
-  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
   dir: "./",
 });
 
@@ -19,27 +18,40 @@ const config: Config = {
   setupFiles: ["<rootDir>/jest.polyfills.ts"],
   // Add more setup options before each test is run
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
-
+  collectCoverageFrom: [
+    "src/**/*.tsx",
+    "src/**/*.ts",
+    "!src/**/*.d.ts",
+    "!src/i18n.ts",
+    "!src/middleware.ts",
+    "!src/_app/providers/providersServer.tsx",
+    "!src/_app/providers/providersClient.tsx",
+    "!src/**/index.ts",
+    "!src/**/__test__/*", // если не нужно собирать покрытие с самих тестов
+  ],  
   coverageProvider: "v8",
   coverageThreshold: {
     global: {
-      lines: 70,
+      branches: 100,
+      functions: 100,
+      lines: 100,
     },
   },
   collectCoverage: true,
+  // coverageReporters: ["json"],
   // coverageReporters: ["json", "html"],
   coverageReporters: ["text", "cobertura"],
   reporters: [
     "default",
     "jest-junit",
-    [
-      "jest-html-reporter",
-      {
-        outputPath: "./reports/test-report.html",
-        pageTitle: "Automation Test with askui",
-        includeFailureMsg: true,
-      },
-    ],
+    // [
+    //   "jest-html-reporter",
+    //   {
+    //     outputPath: "./reports/test-report.html",
+    //     pageTitle: "Automation Test with askui",
+    //     includeFailureMsg: true,
+    //   },
+    // ],
   ],
 
 };

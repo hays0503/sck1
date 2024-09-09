@@ -17,14 +17,14 @@ const CatalogNavigation = ({
 }) => {
   return (
     <>
-      <nav style={style}>
-        <ul style={{ listStyleType: "none", height: "100%", widows: "100%" }}>
-          {CategoriesData.map((Category, index) => (
+      <nav style={{...style,overflow:"auto"}}>
+        <ul style={{ listStyleType: "none", height: "100dvh", width: "100%" }}>
+          {CategoriesData.map((item, index) => (
             <CatalogHovered
               setHoveredElement={setHoveredElement}
-              isHover={HoveredElement.id === Category.id}
+              isHover={HoveredElement.id === item.id}
               key={index}
-              Category={Category}
+              Category={item}
             />
           ))}
           <li style={{ height: "100px" }}></li>

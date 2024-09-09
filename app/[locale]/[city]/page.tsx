@@ -1,11 +1,10 @@
 "use server";
-
+import { headers } from 'next/headers'
 import { MainPage } from "@/_pages/MainPage/MainPage";
 import { isMobileDevice } from "@/shared/tools/responsive";
 
 const Page = async ({ params }: { params: any }) => {
-  console.log("C:/code/sck1/app/[locale]/[city]/page.tsx => Page=>",params)
-  const mobile = isMobileDevice();
+  const mobile = isMobileDevice(headers().get('user-agent')||"");
   return <MainPage params={{ ...params, mobile }} />;
 };
 

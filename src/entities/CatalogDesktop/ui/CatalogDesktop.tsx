@@ -1,63 +1,38 @@
 "use client";
-import { Divider, Flex, Popover } from "antd";
+import { Divider, Flex } from "antd";
 import { useTranslations } from "next-intl";
 import { CSSProperties, useState } from "react";
 import styles from "./CatalogDesktop.module.scss";
-import CatalogNavigation from "./CatalogNavigation";
-import useFetcherCategory from "@/shared/api/fetch/categoty";
-import { CatalogSubMenu } from "./CatalogSubMenu";
+import { CatalogPopover } from "@/shared/ui/Components/CatalogPopover";
 import { Category } from "@/shared/types/category";
 
-export default function CatalogDesktop({ params }: { params: any }) {
+export default function CatalogDesktop({
+  params,
+  CategoriesData,
+  selectCategory,
+  setSelectCategory,
+}: {
+  params: any;
+  CategoriesData: Category[];
+  selectCategory: Category;
+  setSelectCategory: (data: Category) => void;
+}) {
   const CatalogStyleText: CSSProperties = {
     color: "white",
     padding: "12px 20px 12px 16px",
   };
 
   const t = useTranslations();
-  const CategoriesData = useFetcherCategory().data ?? [];
-  const [selectCategory, setSelectCategory] = useState<Category>(CategoriesData[0]);
   const [isOpen, setIsOpen] = useState(true);
-
   return (
     <>
-      <Popover
-        trigger="click"
-        placement="topLeft"
-        overlayStyle={{
-          left: "0px",
-          width: "100dvw",
-          height: "100dvh",
-          overflow: "auto",
-          position: "fixed",
-          // border: "1px solid #3F54CF",
-        }}
-        content={
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-              height: "100dvh",
-            }}
-          >
-            <CatalogNavigation
-              params={params}
-              CategoriesData={CategoriesData}
-              HoveredElement={selectCategory}
-              setHoveredElement={setSelectCategory}
-              style={{
-                width: "30%",
-                height: "100%",
-                // border: "1px solid #3F54CF",
-              }}
-            />
-            <CatalogSubMenu
-              Categories={selectCategory.children}
-            />
-          </div>
-        }
-        arrow={false}
-        onOpenChange={() => {setIsOpen(!isOpen)}}
+      <CatalogPopover 
+      params={params} 
+      isOpen={isOpen} 
+      setIsOpen={setIsOpen}
+      CategoriesData={CategoriesData} 
+      selectCategory={selectCategory}
+      setSelectCategory={setSelectCategory}
       >
         <Flex
           align="center"
@@ -67,7 +42,11 @@ export default function CatalogDesktop({ params }: { params: any }) {
             backgroundColor: "#3F54CF",
           }}
         >
-          <div className={isOpen?styles.animationHoverOn:styles.animationHoverOff}></div>
+          <div
+            className={
+              isOpen ? styles.animationHoverOn : styles.animationHoverOff
+            }
+          ></div>
           <Divider
             type="vertical"
             dashed={true}
@@ -78,7 +57,7 @@ export default function CatalogDesktop({ params }: { params: any }) {
             <span style={CatalogStyleText}>{t("catalog")}</span>
           </Flex>
         </Flex>
-      </Popover>
+      </CatalogPopover>
     </>
   );
 }

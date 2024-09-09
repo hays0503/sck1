@@ -156,5 +156,7 @@
   "cost": "Бағасы:",
   "select": "Таңдаңыз",
   "varianty-ispolneniya-komplektacii": "Орындау опциялары (Параметрлер)",
-  "v-podarok": "Сыйлық ретінде"
+  "v-podarok": "Сыйлық ретінде",
+  "placeholder-search": "Жеңілдетілген өнімдерді іздеңіз",
+  "search": "Табу"
 }

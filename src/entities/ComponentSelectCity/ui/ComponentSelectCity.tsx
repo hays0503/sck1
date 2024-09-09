@@ -36,6 +36,7 @@ export default function ComponentSelectCity({ params }: { params: any }) {
       <Button
         type={"text"}
         onClick={() => setIsOpen(true)}
+        style={{ padding: 0 ,border:"1px solid #f4f4f42e"}}
         icon={<Image src={"/place.svg"} width={24} height={24} alt="account" />}
       >
         <Text strong={true} data-testid="select-city">
