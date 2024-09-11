@@ -1,7 +1,215 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="1" failures="0" errors="0" time="3.042">
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2024-09-11T01:28:03" time="2.688" tests="1">
-    <testcase classname=" Фильтрация городов при поиске" name=" Фильтрация городов при поиске" time="0.488">
+<testsuites name="jest tests" tests="86" failures="0" errors="0" time="6.117">
+  <testsuite name="Проверка функции searchCity" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:42" time="1.247" tests="22">
+    <testcase classname="Проверка функции searchCity searchCity на русском должен вернуть полный массив городов, когда входное значение пустое" name="Проверка функции searchCity searchCity на русском должен вернуть полный массив городов, когда входное значение пустое" time="0.006">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на русском должен вернуть пустой массив, когда входное значение не совпадает ни с одним городом" name="Проверка функции searchCity searchCity на русском должен вернуть пустой массив, когда входное значение не совпадает ни с одним городом" time="0">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на русском должен вернуть отфильтрованный массив городов, когда входное значение совпадает с городом" name="Проверка функции searchCity searchCity на русском должен вернуть отфильтрованный массив городов, когда входное значение совпадает с городом" time="0">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на русском должен вернуть отфильтрованный массив городов, когда входное значение совпадает с городом на другом языке" name="Проверка функции searchCity searchCity на русском должен вернуть отфильтрованный массив городов, когда входное значение совпадает с городом на другом языке" time="0.001">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на русском должен корректно обрабатывать ввод с разным регистром" name="Проверка функции searchCity searchCity на русском должен корректно обрабатывать ввод с разным регистром" time="0">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на русском должен вернуть пустой массив, если входное значение содержит спецсимволы или числа" name="Проверка функции searchCity searchCity на русском должен вернуть пустой массив, если входное значение содержит спецсимволы или числа" time="0">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на русском должен вернуть пустой массив, если входное значение содержит спецсимволы или числа" name="Проверка функции searchCity searchCity на русском должен вернуть пустой массив, если входное значение содержит спецсимволы или числа" time="0">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на русском должен вернуть пустой массив, если cities не существует" name="Проверка функции searchCity searchCity на русском должен вернуть пустой массив, если cities не существует" time="0.001">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на английском должен вернуть полный массив городов, когда входное значение пустое" name="Проверка функции searchCity searchCity на английском должен вернуть полный массив городов, когда входное значение пустое" time="0">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на английском должен вернуть пустой массив, когда входное значение не совпадает ни с одним городом" name="Проверка функции searchCity searchCity на английском должен вернуть пустой массив, когда входное значение не совпадает ни с одним городом" time="0">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на английском должен вернуть отфильтрованный массив городов, когда входное значение совпадает с городом" name="Проверка функции searchCity searchCity на английском должен вернуть отфильтрованный массив городов, когда входное значение совпадает с городом" time="0">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на английском должен вернуть отфильтрованный массив городов, когда входное значение совпадает с городом на другом языке" name="Проверка функции searchCity searchCity на английском должен вернуть отфильтрованный массив городов, когда входное значение совпадает с городом на другом языке" time="0.001">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на английском должен корректно обрабатывать ввод с разным регистром" name="Проверка функции searchCity searchCity на английском должен корректно обрабатывать ввод с разным регистром" time="0">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на английском должен вернуть пустой массив, если входное значение содержит спецсимволы или числа" name="Проверка функции searchCity searchCity на английском должен вернуть пустой массив, если входное значение содержит спецсимволы или числа" time="0">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на казахском должен вернуть полный массив городов, когда входное значение пустое" name="Проверка функции searchCity searchCity на казахском должен вернуть полный массив городов, когда входное значение пустое" time="0.001">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на казахском должен вернуть пустой массив, когда входное значение не совпадает ни с одним городом" name="Проверка функции searchCity searchCity на казахском должен вернуть пустой массив, когда входное значение не совпадает ни с одним городом" time="0">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на казахском должен вернуть отфильтрованный массив городов, когда входное значение совпадает с городом" name="Проверка функции searchCity searchCity на казахском должен вернуть отфильтрованный массив городов, когда входное значение совпадает с городом" time="0">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на казахском должен вернуть отфильтрованный массив городов, когда входное значение совпадает с городом на другом языке" name="Проверка функции searchCity searchCity на казахском должен вернуть отфильтрованный массив городов, когда входное значение совпадает с городом на другом языке" time="0.001">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на казахском должен корректно обрабатывать ввод с разным регистром" name="Проверка функции searchCity searchCity на казахском должен корректно обрабатывать ввод с разным регистром" time="0">
+    </testcase>
+    <testcase classname="Проверка функции searchCity searchCity на казахском должен вернуть пустой массив, если входное значение содержит спецсимволы или числа" name="Проверка функции searchCity searchCity на казахском должен вернуть пустой массив, если входное значение содержит спецсимволы или числа" time="0">
+    </testcase>
+    <testcase classname="Проверка функции searchCity Некорректные или отсутствующие локали должен вернуть пустой массив, если передана некорректная локаль" name="Проверка функции searchCity Некорректные или отсутствующие локали должен вернуть пустой массив, если передана некорректная локаль" time="0.001">
+    </testcase>
+    <testcase classname="Проверка функции searchCity Некорректные или отсутствующие локали должен вернуть пустой массив, если локаль отсутствует" name="Проверка функции searchCity Некорректные или отсутствующие локали должен вернуть пустой массив, если локаль отсутствует" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="selectCurrentCity" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:42" time="1.243" tests="10">
+    <testcase classname="selectCurrentCity Возвращает город по русскому названию" name="selectCurrentCity Возвращает город по русскому названию" time="0.006">
+    </testcase>
+    <testcase classname="selectCurrentCity Возвращает город по английскому названию" name="selectCurrentCity Возвращает город по английскому названию" time="0">
+    </testcase>
+    <testcase classname="selectCurrentCity Возвращает город по казахскому названию" name="selectCurrentCity Возвращает город по казахскому названию" time="0.001">
+    </testcase>
+    <testcase classname="selectCurrentCity Возвращает undefined, если город не найден" name="selectCurrentCity Возвращает undefined, если город не найден" time="0">
+    </testcase>
+    <testcase classname="selectCurrentCity Возвращает undefined, если массив городов пуст" name="selectCurrentCity Возвращает undefined, если массив городов пуст" time="0">
+    </testcase>
+    <testcase classname="selectCurrentCity Возвращает undefined, если массив городов отсутствует" name="selectCurrentCity Возвращает undefined, если массив городов отсутствует" time="0">
+    </testcase>
+    <testcase classname="selectCurrentCity Возвращает undefined, если все параметры названий городов отсутствуют" name="selectCurrentCity Возвращает undefined, если все параметры названий городов отсутствуют" time="0">
+    </testcase>
+    <testcase classname="selectCurrentCity Отдает приоритет русскому названию при наличии нескольких параметров" name="selectCurrentCity Отдает приоритет русскому названию при наличии нескольких параметров" time="0">
+    </testcase>
+    <testcase classname="selectCurrentCity Отдает приоритет английскому названию, если русское не указано" name="selectCurrentCity Отдает приоритет английскому названию, если русское не указано" time="0">
+    </testcase>
+    <testcase classname="selectCurrentCity Отдает приоритет казахскому названию, если русское и английское не указаны" name="selectCurrentCity Отдает приоритет казахскому названию, если русское и английское не указаны" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="isMobileDevice" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:42" time="1.246" tests="3">
+    <testcase classname="isMobileDevice должен возвращать значение true, когда user-agent указывает на мобильное устройство" name="isMobileDevice должен возвращать значение true, когда user-agent указывает на мобильное устройство" time="0.007">
+    </testcase>
+    <testcase classname="isMobileDevice должен возвращать false, когда user-agent указывает на немобильное устройство" name="isMobileDevice должен возвращать false, когда user-agent указывает на немобильное устройство" time="0.003">
+    </testcase>
+    <testcase classname="isMobileDevice должен возвращать false, если не указан пользовательский агент" name="isMobileDevice должен возвращать false, если не указан пользовательский агент" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:42" time="1.265" tests="13">
+    <testcase classname=" selectDataByLangCategory должен вернуть имя категории на основе текущего языка" name=" selectDataByLangCategory должен вернуть имя категории на основе текущего языка" time="0.006">
+    </testcase>
+    <testcase classname=" selectDataByLangBrands должен вернуть имя бренда на основе текущего языка" name=" selectDataByLangBrands должен вернуть имя бренда на основе текущего языка" time="0.001">
+    </testcase>
+    <testcase classname=" selectDataByLangProducts должен вернуть имя продукта на основе текущего языка" name=" selectDataByLangProducts должен вернуть имя продукта на основе текущего языка" time="0.001">
+    </testcase>
+    <testcase classname=" selectDataByLangDescriptionTitle должен вернуть заголовок описания на основе текущего языка" name=" selectDataByLangDescriptionTitle должен вернуть заголовок описания на основе текущего языка" time="0">
+    </testcase>
+    <testcase classname=" selectDataByLangDescriptionBody должен вернуть тело описания на основе текущего языка" name=" selectDataByLangDescriptionBody должен вернуть тело описания на основе текущего языка" time="0">
+    </testcase>
+    <testcase classname=" selectDataByLangSpecificationName-Specification должен вернуть имя спецификации на основе текущего языка" name=" selectDataByLangSpecificationName-Specification должен вернуть имя спецификации на основе текущего языка" time="0.005">
+    </testcase>
+    <testcase classname=" selectDataByLangSpecificationValue-Specification должен вернуть значение спецификации на основе текущего языка" name=" selectDataByLangSpecificationValue-Specification должен вернуть значение спецификации на основе текущего языка" time="0">
+    </testcase>
+    <testcase classname=" selectDataByLangSpecificationName-NameSpecification должен вернуть имя спецификации на основе текущего языка" name=" selectDataByLangSpecificationName-NameSpecification должен вернуть имя спецификации на основе текущего языка" time="0.001">
+    </testcase>
+    <testcase classname=" selectDataByLangSpecificationValue должен-ValueSpecification вернуть значение спецификации на основе текущего языка" name=" selectDataByLangSpecificationValue должен-ValueSpecification вернуть значение спецификации на основе текущего языка" time="0">
+    </testcase>
+    <testcase classname=" selectDataByLangSpecificationName-битые данные должны вернуть undefined" name=" selectDataByLangSpecificationName-битые данные должны вернуть undefined" time="0.001">
+    </testcase>
+    <testcase classname=" selectDataByLangSpecificationValue-битые данные должны вернуть undefined" name=" selectDataByLangSpecificationValue-битые данные должны вернуть undefined" time="0">
+    </testcase>
+    <testcase classname=" selectDataByLangCity должен вернуть название города на основе текущего языка" name=" selectDataByLangCity должен вернуть название города на основе текущего языка" time="0">
+    </testcase>
+    <testcase classname=" selectDataByTagProd должен вернуть текст тега на основе текущего языка" name=" selectDataByTagProd должен вернуть текст тега на основе текущего языка" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="ResponsiveComponent" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:42" time="1.382" tests="2">
+    <testcase classname="ResponsiveComponent should render &quot;Wide Screen&quot; when screen width is at least 600px" name="ResponsiveComponent should render &quot;Wide Screen&quot; when screen width is at least 600px" time="0.024">
+    </testcase>
+    <testcase classname="ResponsiveComponent should render &quot;Narrow Screen&quot; when screen width is less than 600px" name="ResponsiveComponent should render &quot;Narrow Screen&quot; when screen width is less than 600px" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="LogoSCK" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:41" time="1.498" tests="3">
+    <testcase classname="LogoSCK должен отображать логотип с правильным изображением" name="LogoSCK должен отображать логотип с правильным изображением" time="0.037">
+    </testcase>
+    <testcase classname="LogoSCK должен генерировать правильную ссылку" name="LogoSCK должен генерировать правильную ссылку" time="0.028">
+    </testcase>
+    <testcase classname="LogoSCK должен иметь правильные стили контейнера" name="LogoSCK должен иметь правильные стили контейнера" time="0.008">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:42" time="1.461" tests="1">
+    <testcase classname=" Тест карусели на предмет отображение фоновой картинки по умолчанию" name=" Тест карусели на предмет отображение фоновой картинки по умолчанию" time="0.054">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:42" time="1.57" tests="5">
+    <testcase classname=" Запрос текущего города исходя из локали и адреса в url (rus)" name=" Запрос текущего города исходя из локали и адреса в url (rus)" time="0.06">
+    </testcase>
+    <testcase classname=" Запрос текущего города исходя из локали и адреса в url (eng)" name=" Запрос текущего города исходя из локали и адреса в url (eng)" time="0.003">
+    </testcase>
+    <testcase classname=" Запрос текущего города исходя из локали и адреса в url (kaz)" name=" Запрос текущего города исходя из локали и адреса в url (kaz)" time="0.001">
+    </testcase>
+    <testcase classname=" Обработка неожиданного поведения локали" name=" Обработка неожиданного поведения локали" time="0.002">
+    </testcase>
+    <testcase classname=" Обработка неожиданного поведения адреса неизвестном городе" name=" Обработка неожиданного поведения адреса неизвестном городе" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="Проверка компонента SearchLine" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:41" time="3.703" tests="1">
+    <testcase classname="Проверка компонента SearchLine Отключён ли компонент" name="Проверка компонента SearchLine Отключён ли компонент" time="0.174">
+    </testcase>
+  </testsuite>
+  <testsuite name="AccountButton" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:41" time="3.691" tests="3">
+    <testcase classname="AccountButton должен отображать иконку логина" name="AccountButton должен отображать иконку логина" time="0.094">
+    </testcase>
+    <testcase classname="AccountButton должен отображать текст &quot;Личный кабинет&quot;" name="AccountButton должен отображать текст &quot;Личный кабинет&quot;" time="0.02">
+    </testcase>
+    <testcase classname="AccountButton должен иметь правильный размер кнопки" name="AccountButton должен иметь правильный размер кнопки" time="0.067">
+    </testcase>
+  </testsuite>
+  <testsuite name="CatalogNavigation component" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:42" time="3.689" tests="1">
+    <testcase classname="CatalogNavigation component должен правильно отображать список категорий" name="CatalogNavigation component должен правильно отображать список категорий" time="0.167">
+    </testcase>
+  </testsuite>
+  <testsuite name="Тестирование Header с Локализацией на русском десктоп" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:42" time="3.724" tests="2">
+    <testcase classname="Тестирование Header с Локализацией на русском десктоп Рендер Header и проверка содержимого" name="Тестирование Header с Локализацией на русском десктоп Рендер Header и проверка содержимого" time="0.148">
+    </testcase>
+    <testcase classname="Тестирование Header с Локализацией на русском мобильная версия Рендер Header и проверка содержимого (мобильная версия) ссылок не должно быть" name="Тестирование Header с Локализацией на русском мобильная версия Рендер Header и проверка содержимого (мобильная версия) ссылок не должно быть" time="0.021">
+    </testcase>
+  </testsuite>
+  <testsuite name="Проверка компонента RenderMenu" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:41" time="3.785" tests="3">
+    <testcase classname="Проверка компонента RenderMenu Рендер пустого меню" name="Проверка компонента RenderMenu Рендер пустого меню" time="0.012">
+    </testcase>
+    <testcase classname="Проверка компонента RenderMenu Рендер и подсчет количества категорий" name="Проверка компонента RenderMenu Рендер и подсчет количества категорий" time="0.221">
+    </testcase>
+    <testcase classname="Проверка компонента RenderMenu Рендер и проверка корректности данных" name="Проверка компонента RenderMenu Рендер и проверка корректности данных" time="0.035">
+    </testcase>
+  </testsuite>
+  <testsuite name="CatalogDesktop" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:42" time="3.721" tests="3">
+    <testcase classname="CatalogDesktop компонент рендерится с переданными пропсами" name="CatalogDesktop компонент рендерится с переданными пропсами" time="0.116">
+    </testcase>
+    <testcase classname="CatalogDesktop CatalogPopover получает правильные пропсы" name="CatalogDesktop CatalogPopover получает правильные пропсы" time="0.022">
+    </testcase>
+    <testcase classname="CatalogDesktop Divider отображается с правильными стилями" name="CatalogDesktop Divider отображается с правильными стилями" time="0.038">
+    </testcase>
+  </testsuite>
+  <testsuite name="BasketButton" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:42" time="3.822" tests="4">
+    <testcase classname="BasketButton должен отображать количество товаров в Badge" name="BasketButton должен отображать количество товаров в Badge" time="0.121">
+    </testcase>
+    <testcase classname="BasketButton должен отображать правильную сумму корзины" name="BasketButton должен отображать правильную сумму корзины" time="0.028">
+    </testcase>
+    <testcase classname="BasketButton должен иметь правильный цвет фона кнопки" name="BasketButton должен иметь правильный цвет фона кнопки" time="0.103">
+    </testcase>
+    <testcase classname="BasketButton должен отображать разделитель" name="BasketButton должен отображать разделитель" time="0.07">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:41" time="3.872" tests="2">
+    <testcase classname=" Рендер с выбранной локаль En" name=" Рендер с выбранной локаль En" time="0.184">
+    </testcase>
+    <testcase classname=" При Наведение на элемент происходит смена цвета и смена текущего элемента" name=" При Наведение на элемент происходит смена цвета и смена текущего элемента" time="0.13">
+    </testcase>
+  </testsuite>
+  <testsuite name="Проверка компонента RenderMenu" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:42" time="3.871" tests="2">
+    <testcase classname="Проверка компонента RenderMenu Рендер и подсчет количества категорий" name="Проверка компонента RenderMenu Рендер и подсчет количества категорий" time="0.264">
+    </testcase>
+    <testcase classname="Проверка компонента RenderMenu Рендер и проверка корректности данных" name="Проверка компонента RenderMenu Рендер и проверка корректности данных" time="0.114">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:42" time="4.355" tests="3">
+    <testcase classname=" Проверка на возврат нужного количества под категорий" name=" Проверка на возврат нужного количества под категорий" time="0.764">
+    </testcase>
+    <testcase classname=" Проверка на возврат правильности данных под категорий для анг" name=" Проверка на возврат правильности данных под категорий для анг" time="0.031">
+    </testcase>
+    <testcase classname=" Проверка на возврат правильности данных под категорий для каз" name=" Проверка на возврат правильности данных под категорий для каз" time="0.028">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:41" time="4.576" tests="2">
+    <testcase classname=" Открытие и закрытие модального окна" name=" Открытие и закрытие модального окна" time="0.726">
+    </testcase>
+    <testcase classname=" Фильтрация городов при поиске" name=" Фильтрация городов при поиске" time="0.248">
+    </testcase>
+  </testsuite>
+  <testsuite name="CatalogPopover component" errors="0" failures="0" skipped="0" timestamp="2024-09-11T15:00:41" time="4.835" tests="1">
+    <testcase classname="CatalogPopover component должен правильно отображать список категорий при клике" name="CatalogPopover component должен правильно отображать список категорий при клике" time="1.304">
     </testcase>
   </testsuite>
 </testsuites>

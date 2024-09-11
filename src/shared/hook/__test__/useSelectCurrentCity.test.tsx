@@ -2,15 +2,15 @@ import "@/shared/mock/matchMedia.mock";
 import { UrlApi } from "@/shared/api/url";
 import { afterEach, test, expect,beforeAll,afterAll } from "@jest/globals";
 import { render, screen } from "@testing-library/react";
-import { rest } from "msw";
+import { HttpResponse, http } from "msw";
 import { setupServer } from "msw/node";
 import getCityFromMockData from "@/shared/mock/getCityFromMockData";
 import useSelectCurrentCity from "../useSelectCurrentCity";
 import { describe } from "node:test";
 
 const server = setupServer(
-  rest.get(`${UrlApi.getCity}`, (req, res, ctx) => {
-    return res(ctx.json(getCityFromMockData()));
+  http.get(`${UrlApi.getCity}`, () => {
+    return HttpResponse.json(getCityFromMockData());
   })
 );
 

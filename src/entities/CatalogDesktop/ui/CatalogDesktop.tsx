@@ -26,7 +26,8 @@ export default function CatalogDesktop({
   const [isOpen, setIsOpen] = useState(true);
   return (
     <>
-      <CatalogPopover 
+      <CatalogPopover
+      role={"catalog-popover"} 
       params={params} 
       isOpen={isOpen} 
       setIsOpen={setIsOpen}
@@ -43,6 +44,7 @@ export default function CatalogDesktop({
           }}
         >
           <div
+            data-testid="catalog-desktop123"
             className={
               isOpen ? styles.animationHoverOn : styles.animationHoverOff
             }

@@ -36,9 +36,8 @@ export default function CarouselSCK({
   const CarouselRef = useRef(null);
   const imageSelector = useRef<number>(0);
 
-  // console.log(CarouselRef.current)
   return (
-    <div style={{ backgroundImage: `url(${background})`,height:"300px" }}>
+    <div data-testid="carousel-sck" style={{ backgroundImage: `url(${background})`,height:"300px" }}>
       <div
         style={{
           paddingBottom: "30px",
@@ -48,10 +47,9 @@ export default function CarouselSCK({
         }}
       >
         <Carousel
-          beforeChange={(nextSlide: number, state: StateCallBack) => {
-            // console.log(nextSlide,state)
+          beforeChange={
+            (nextSlide: number, state: StateCallBack) => {
             if (nextSlide > state.currentSlide) {
-              console.log("right");
               if (
                 imageSelector.current + 1 ===
                 selectCategory.list_url_to_baner.length
@@ -61,7 +59,6 @@ export default function CarouselSCK({
                 imageSelector.current = imageSelector.current + 1;
               }
             } else {
-              console.log("left");
               if (imageSelector.current - 1 < 0) {
                 imageSelector.current =
                   selectCategory.list_url_to_baner.length - 1;
@@ -72,7 +69,8 @@ export default function CarouselSCK({
             setBackground(
               selectCategory.list_url_to_baner[imageSelector.current]
             );
-          }}
+          }
+        }
           ref={CarouselRef}
           additionalTransfrom={0}
           arrows
