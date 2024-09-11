@@ -1,6 +1,7 @@
 "use client";
 import { AccountButton } from "@/entities/AccountButton";
 import { BasketButton } from "@/entities/BasketButton";
+import { CarouselSCK } from "@/entities/CarouselSCK";
 import { CatalogDesktop } from "@/entities/CatalogDesktop";
 import { LogoSCK } from "@/entities/LogoSCK";
 import { MenuWithOverflow } from "@/entities/MenuWithOverflow";
@@ -28,8 +29,9 @@ export default function HeaderMenu({ params,style }: { params: any,style:CSSProp
         <AccountButton/>
         <BasketButton/>
       </Flex>
-      <Flex>
+      <Flex vertical={true} gap={"100px"} style={{ width: "100%" }}>
         <MenuWithOverflow selectCategory={selectCategory}/>
+        <CarouselSCK selectCategory={selectCategory} isMobile={params.isMobile}/>
       </Flex>
 
       </Flex>

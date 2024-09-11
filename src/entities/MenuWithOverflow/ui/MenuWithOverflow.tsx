@@ -13,8 +13,10 @@ import React, {
 import { Category } from "@/shared/types/category";
 import RenderMenu from "./RenderMenu";
 import MenuComponent from "./MenuComponent";
+import { useLocale } from "next-intl";
 
 const MenuWithOverflow = ({ selectCategory }: { selectCategory: Category }) => {
+  const localActive = useLocale();
   const [visibleItems, setVisibleItems] = useState<Category[]>([]);
   const [hiddenItems, setHiddenItems] = useState<Category[]>([]);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -100,16 +102,16 @@ const MenuWithOverflow = ({ selectCategory }: { selectCategory: Category }) => {
         height: 32,
       }}
     >
-      <div style={{ ...ListStyle, zIndex: 0, height: 32 }}>
-        <RenderMenu Categories={visibleItems} />
+      <div style={{ ...ListStyle, zIndex: 0, height: 32 }} data-testid="final-menu">
+        <RenderMenu Categories={visibleItems} role="navigation-element" />
       </div>
-      <div ref={menuRef} style={{ ...ListStyle, height: 0,zIndex: 999 }}>
-        <RenderMenu Categories={Categories} />
+      <div ref={menuRef} style={{ ...ListStyle, height: 0,zIndex: 999 }} data-testid="prerender-menu">
+        <RenderMenu Categories={Categories} role="prerender-navigation-element"/>
       </div>
 
       <Divider type="vertical" style={{ margin: "0 8px" }} />
       {hiddenItems.length > 0 && (
-        <Dropdown menu={{ items: MenuComponent({ Categories: hiddenItems }) }}>
+       <Dropdown menu={{ items: MenuComponent({ Categories: hiddenItems,localActive:localActive }) }}>
           <Button
             type="text"
             style={{

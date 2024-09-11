@@ -16,7 +16,7 @@ const TestComponent = () => {
     <div role="open-dropdown-menu">
       <Dropdown
         trigger={["click"]}
-        menu={{ items: MenuComponent({ Categories: categoriesMock }) }}
+        menu={{ items: MenuComponent({ Categories: categoriesMock, localActive: "en" }) }}
       >
         <Button
           type="text"

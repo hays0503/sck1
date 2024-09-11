@@ -6,7 +6,7 @@ import { Button, Tooltip, Typography } from "antd";
 import { useLocale } from "next-intl";
 const { Text } = Typography;
 
-const RenderMenu = ({ Categories }: { Categories: Category[] }) => {
+const RenderMenu = ({ Categories, role }: { Categories: Category[], role?: string }) => {
   const localActive = useLocale();
   if (Categories.length === 0) return null;
   return (
@@ -20,7 +20,7 @@ const RenderMenu = ({ Categories }: { Categories: Category[] }) => {
             backgroundColor: "red",
           }}>
             <>
-            <ButtonNavigation item={data} />
+            <ButtonNavigation item={data} role={role}/>
             </>
           </Tooltip>
         );

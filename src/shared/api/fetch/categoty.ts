@@ -1,6 +1,6 @@
 "use client";
 import useSWR from "swr";
-import {UrlApi} from "../url";
+import {UrlApi, UrlRevalidate} from "../url";
 import { Category } from "@/shared/types/category";
 
 const fetcher = (url: string, options?: RequestInit) =>
@@ -8,7 +8,7 @@ const fetcher = (url: string, options?: RequestInit) =>
 
 export default function useFetcherCategory() {
   const object = useSWR<Category[]>(UrlApi.getCategory, (url: string) =>
-    fetcher(url, {})
+    fetcher(url, UrlRevalidate.getCategory)
   );
 
   return object;

@@ -12,12 +12,12 @@ const config: Config = {
     customExportConditions: [""],
   },
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1",
-    "^@/messages/(.*)$": "<rootDir>/messages/$1",
+    "^@/(.*)$": "./src/$1",
+    "^@/messages/(.*)$": "./messages/$1",
   },
-  setupFiles: ["<rootDir>/jest.polyfills.ts"],
+  setupFiles: ["./jest.polyfills.ts"],
   // Add more setup options before each test is run
-  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  setupFilesAfterEnv: ["./jest.setup.ts"],
   collectCoverageFrom: [
     "src/**/*.tsx",
     "src/**/*.ts",

@@ -26,7 +26,7 @@ describe("Проверка компонента RenderMenu", () => {
     // Рендер с тестовыми категориями
     render(
       <NextIntlClientProvider locale="en">
-        <RenderMenu Categories={categoriesMock} />
+        <RenderMenu Categories={categoriesMock} role="navigation-element" />
       </NextIntlClientProvider>
     );
 
