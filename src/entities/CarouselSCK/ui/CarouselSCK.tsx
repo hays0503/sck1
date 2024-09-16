@@ -37,7 +37,7 @@ export default function CarouselSCK({
   const imageSelector = useRef<number>(0);
 
   return (
-    <div data-testid="carousel-sck" style={{ backgroundImage: `url(${background})`,height:"300px" }}>
+    <div data-testid="carousel-sck" style={{ backgroundImage: `url(${background})`,height:"300px",marginBottom:"50px" }}>
       <div
         style={{
           paddingBottom: "30px",

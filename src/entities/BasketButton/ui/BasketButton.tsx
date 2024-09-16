@@ -1,13 +1,16 @@
 "use client";
+import useBasket from "@/shared/hook/useBasket";
 import { Button, Divider, Flex, Typography,Badge } from "antd";
 const { Text } = Typography;
 
 export default function BasketButton() {
+  const { get:{basketGet} } = useBasket();
+  console.log(basketGet)
   return (
     <>
       <Button size="large" style={{ backgroundColor: "#3E54CF",border:"4px" }}>
         <Flex justify="center" align="center">
-          <Badge count={5} offset={[-45, 5]}>
+          <Badge count={basketGet?.basket_items?.reduce((acc, item) => acc + item.count, 0)} offset={[-45, 5]}>
           <Flex
             justify="center"
             align="center"

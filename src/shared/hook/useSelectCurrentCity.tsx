@@ -5,9 +5,12 @@ import selectCurrentCity from "../tools/selectCurrentCity";
 export default function useSelectCurrentCity(
   locale: string, NameCity: string
 ) {
-  const { data: cities } = useFetcherCity();
+  const cities = useFetcherCity().data!;
+  // console.log(cities)
 
-  useEffect(() => {}, [cities]);
+  useEffect(() => {
+
+  }, [cities]);
 
   if (!cities) {
     return undefined;
