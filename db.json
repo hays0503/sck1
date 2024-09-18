@@ -1,0 +1,14 @@
+{
+    "citys": [
+        {
+          "id": 6,
+          "additional_data": {
+            "EN": "Almaty",
+            "KZ": "Алматы"
+          },
+          "name_city": "Алматы"
+        }
+      ]
+
+  }
+  

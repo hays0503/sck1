@@ -1,4 +1,4 @@
-import { UrlApiWithDomain,UrlRevalidate } from "@/shared/api/url";
+import { UrlApiWithDomain, UrlRevalidate } from "@/shared/api/url";
 import type { Metadata } from "next";
 import { unstable_setRequestLocale } from "next-intl/server";
 

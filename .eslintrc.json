@@ -3,12 +3,16 @@
   "rules": {
     "max-lines": [
       "error",
-      { "max": 100, "skipComments": true, "skipBlankLines": true }
+      { "max": 150, "skipComments": true, "skipBlankLines": true }
     ]
   },
   "overrides": [
     {
-      "files": ["**/test/**/*.{js,ts,jsx,tsx}", "**/__test__/**/*.{js,ts,jsx,tsx}"],
+      "files": [
+        "**/test/**/*.{js,ts,jsx,tsx}",
+        "**/__test__/**/*.{js,ts,jsx,tsx}",
+        "src/shared/mock/*.{js,ts,jsx,tsx}"
+      ],
       "rules": {
         "max-lines": "off"
       }

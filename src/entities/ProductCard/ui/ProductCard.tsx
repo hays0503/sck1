@@ -11,13 +11,16 @@ import useSelectCurrentCity from "@/shared/hook/useSelectCurrentCity";
 import beautifulCost from "@/shared/tools/beautifulCost";
 import useBasket from "@/shared/hook/useBasket";
 
-export default function ProductCard({ product }: { product: Products }) {
+export default function ProductCard({
+  product,
+  currentCityRU,
+}: {
+  product: Products;
+  currentCityRU: string;
+}) {
   const localeActive = useLocale();
   const t = useTranslations();
-  const currentCityEN = useGetCityParams();
-  const currentCityRU = useSelectCurrentCity("en", currentCityEN)?.name_city;
 
-  
   const { add } = useBasket();
 
   if (product === null) return null;
@@ -34,14 +37,8 @@ export default function ProductCard({ product }: { product: Products }) {
   const discount = discount_amount_product || discount_amount_category;
 
   return (
-    <div
-      style={{
-        height: "486px",
-        width: "232px",
-        border: "1px solid #F4F4F4", //Убрать потом
-      }}
-    >
-      <Flex vertical={true} gap={"10px"}>
+    <div className={styles.ProductCardRoot}>
+      <Flex vertical={true} gap={"20px"}>
         <div className={styles.ProductCardContainer}>
           <span className={styles.ProductCardContainerText}>
             Рассрочка + Кэшбек
@@ -95,12 +92,12 @@ export default function ProductCard({ product }: { product: Products }) {
               </div>
             </>
           )}
-
         </Flex>
-        <Button className={styles.ProductCardContainerAddToCartButton}
-        onClick={()=>{
-          add({id_prod:product.id});
-        }}
+        <Button
+          className={styles.ProductCardContainerAddToCartButton}
+          onClick={() => {
+            add({ id_prod: product.id });
+          }}
         >
           <Image alt="cart" src="/cart.svg" width={20} height={20} />
           <span className={styles.ProductCardContainerAddToCartButtonText}>

@@ -111,7 +111,8 @@ const MenuWithOverflow = ({ selectCategory }: { selectCategory: Category }) => {
 
       <Divider type="vertical" style={{ margin: "0 8px" }} />
       {hiddenItems.length > 0 && (
-       <Dropdown menu={{ items: MenuComponent({ Categories: hiddenItems,localActive:localActive }) }}>
+       <Dropdown menu={{ items: MenuComponent({ Categories: hiddenItems, localActive }) }}>
+
           <Button
             type="text"
             style={{

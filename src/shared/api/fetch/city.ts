@@ -2,13 +2,11 @@
 import useSWR from "swr";
 import {UrlApi} from "../url";
 import { iCity } from "@/shared/types/city";
-
-const fetcher = (url: string, options?: RequestInit) =>
-  fetch(url, options).then((res) => res.json());
+import defaultFetcher from "./defaultFetcher";
 
 export default function useFetcherCity() {
   const object = useSWR<iCity[]>(UrlApi.getCity, (url: string) =>
-    fetcher(url, {})
+    defaultFetcher(url, {})
   );
 
   return object;

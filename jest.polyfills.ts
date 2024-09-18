@@ -8,8 +8,8 @@
  * you don't want to deal with this.
  */
 
-const { TextDecoder, TextEncoder } = require('node:util');
-const { ReadableStream, TransformStream } = require('node:stream/web');
+// const { TextDecoder, TextEncoder } = require('node:util');
+// const { ReadableStream, TransformStream } = require('node:stream/web');
 
 Object.defineProperties(globalThis, {
   TextDecoder: { value: TextDecoder },
@@ -18,8 +18,8 @@ Object.defineProperties(globalThis, {
   TransformStream: { value: TransformStream },
 });
 
-const { Blob, File } = require('node:buffer');
-const { fetch, Headers, FormData, Request, Response } = require('undici');
+// const { Blob, File } = require('node:buffer');
+// const { fetch, Headers, FormData, Request, Response } = require('undici');
 
 Object.defineProperties(globalThis, {
   fetch: { value: fetch, writable: true },

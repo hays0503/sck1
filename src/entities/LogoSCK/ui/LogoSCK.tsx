@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function LogoSCK({ params }: { params: any }) {
   return (
     <>
-      <Link href={`/${params.locale}/${params.city}`}>
+      <Link href={`/${params.locale}/${params.city}`} replace={true}>
         <div
           style={{
             position: "relative",

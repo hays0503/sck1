@@ -2,9 +2,8 @@
 import useSWR from "swr";
 import { UrlApi, UrlRevalidate } from "../url";
 import { Products } from "@/shared/types/products";
+import defaultFetcher from "./defaultFetcher";
 
-const fetcher = (url: string, options?: RequestInit) =>
-  fetch(url, options).then((res) => res.json());
 
 interface PropsFetcherProducts {
   as:
@@ -25,36 +24,41 @@ export default function useFetcherProducts({
     // Детали конкретного продукта по его слагу.
     case "slug_prod": {
       const urls = `${UrlApi.getProducts}${params}`
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       return useSWR<Products[]>(urls, (url: string) =>
-        fetcher(urls, UrlRevalidate.getProducts)
+        defaultFetcher(urls, UrlRevalidate.getProducts)
       );
     }
     // Фильтрация продуктов по категории
     case "filter_by_cat": {
       const urls = `${UrlApi.getProducts}${as}/${params}`
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       return useSWR<Products[]>(urls, (url: string) =>
-        fetcher(urls, UrlRevalidate.getProducts)
+        defaultFetcher(urls, UrlRevalidate.getProducts)
       );
     }
     //Получение списка слагов всех продуктов
     case "all/slugs": {
       const urls = `${UrlApi.getProducts}${as}`
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       return useSWR<Products[]>(urls, (url: string) =>
-        fetcher(urls, UrlRevalidate.getProducts)
+        defaultFetcher(urls, UrlRevalidate.getProducts)
       );
     }
     //Получение продуктов по списку идентификаторов.
     case "by_ids": {
       const urls = `${UrlApi.getProducts}${as}/${params}`
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       return useSWR<Products[]>(urls, (url: string) => {
-        return fetcher(urls, UrlRevalidate.getProducts);
+        return defaultFetcher(urls, UrlRevalidate.getProducts);
       });
     }
     //Фильтрация продуктов по различным параметрам.
     case "set/filter": {
       const urls = `${UrlApi.getProducts}${as}`
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       return useSWR<Products[]>(UrlApi.getProducts, (url: string) =>
-        fetcher(urls, {
+        defaultFetcher(urls, {
           ...UrlRevalidate.getProducts,
           body: JSON.stringify(params),
         })
@@ -62,9 +66,11 @@ export default function useFetcherProducts({
     }
     //Список всех продуктов
     default: {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       return useSWR<Products[]>(UrlApi.getProducts, (url: string) =>
-        fetcher(url, UrlRevalidate.getProducts)
+        defaultFetcher(url, UrlRevalidate.getProducts)
       );
     }
+
   }
 }

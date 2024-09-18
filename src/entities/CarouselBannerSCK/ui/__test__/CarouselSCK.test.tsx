@@ -8,7 +8,7 @@ import {
   within,
 } from "@testing-library/react";
 import { describe } from "node:test";
-import CarouselSCK from "../CarouselSCK";
+import CarouselBannerSCK from "../CarouselBannerSCK";
 import getCategoriesFromMockData from "@/shared/mock/getCategoriesFromMockData";
 import { act } from "react";
 
@@ -17,7 +17,7 @@ const mockCategory = getCategoriesFromMockData().find(
 )!;
 describe("Тест карусели на предмет отображение картинок", () => {
   const TestComponent = () => {
-    return <CarouselSCK selectCategory={mockCategory} isMobile={false} />;
+    return <CarouselBannerSCK selectCategory={mockCategory} isMobile={false} />;
   };
 
   test("Тест карусели на предмет отображение фоновой картинки по умолчанию", async () => {

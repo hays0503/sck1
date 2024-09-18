@@ -39,6 +39,7 @@ export default function CatalogDesktop({
           align="center"
           justify="center"
           style={{
+            cursor: "pointer",
             borderRadius: "4px",
             backgroundColor: "#3F54CF",
           }}

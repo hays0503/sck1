@@ -7,7 +7,7 @@ import { test, expect,jest,describe } from "@jest/globals";
 
 // Мокаем next/link и next/image
 jest.mock('next/link', () => ({ children }: { children: React.ReactNode }) => children);
-jest.mock('next/image', () => (props: any) => <img {...props} />);
+// jest.mock('next/image', () => (props: any) => <img {...props} />);
 
 describe('LogoSCK', () => {
   const mockParams = { locale: 'en', city: 'new-york' };

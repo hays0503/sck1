@@ -1,7 +1,7 @@
 "use client";
 import { AccountButton } from "@/entities/AccountButton";
 import { BasketButton } from "@/entities/BasketButton";
-import { CarouselSCK } from "@/entities/CarouselSCK";
+import { CarouselSCK } from "@/entities/CarouselBannerSCK";
 import { CatalogDesktop } from "@/entities/CatalogDesktop";
 import { LogoSCK } from "@/entities/LogoSCK";
 import { MenuWithOverflow } from "@/entities/MenuWithOverflow";

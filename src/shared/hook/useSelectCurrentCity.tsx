@@ -6,7 +6,6 @@ export default function useSelectCurrentCity(
   locale: string, NameCity: string
 ) {
   const cities = useFetcherCity().data!;
-  // console.log(cities)
 
   useEffect(() => {
 

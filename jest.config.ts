@@ -7,6 +7,7 @@ const createJestConfig = nextJest({
 
 // Add any custom config to be passed to Jest
 const config: Config = {
+  globals: { TextEncoder: TextEncoder, TextDecoder: TextDecoder },
   testEnvironment: "jsdom",
   testEnvironmentOptions: {
     customExportConditions: [""],
@@ -14,6 +15,7 @@ const config: Config = {
   moduleNameMapper: {
     "^@/(.*)$": "./src/$1",
     "^@/messages/(.*)$": "./messages/$1",
+    "uuid": require.resolve('uuid'),
   },
   setupFiles: ["./jest.polyfills.ts"],
   // Add more setup options before each test is run
@@ -36,6 +38,7 @@ const config: Config = {
       functions: 100,
       lines: 100,
     },
+
   },
   collectCoverage: true,
   // coverageReporters: ["json"],

@@ -3,22 +3,18 @@
 import { ProvidersClient } from "@/_app/providers/providersClient";
 import { ProvidersServer } from "@/_app/providers/providersServer";
 import { FooterSCK } from "@/features/FooterSCK";
-import { fetchCategory, fetchCity, fetchPopularProductsByIds, fetchPopulates, UrlApiPopularProductsByIds } from "@/shared/api/fallback/fallback";
+import { fetchCategory, fetchCity } from "@/shared/api/fallback/fallback";
 import { UrlApi} from "@/shared/api/url";
 import getCityFromMockData from "@/shared/mock/getCityFromMockData";
-
 import { HeaderSCK } from "@/widgets/HeaderSCK";
-import { Sale } from "@/widgets/Sale";
 import { Flex } from "antd";
+import React from "react";
 
-export async function MainPage({ params }: { params: any }) {
+const ProductsInCategory:React.FC<{ params: any }> = ({ params }) => {
 
   const fallback = {
     [UrlApi.getCity]: getCityFromMockData(),//fetchCity,
     [UrlApi.getCategory]: fetchCategory,
-    [UrlApi.getPopulates]: fetchPopulates,
-    // [UrlApi.getProducts]: fetchProduct,
-    [UrlApiPopularProductsByIds]: fetchPopularProductsByIds,
   };
 
   return (
@@ -28,7 +24,7 @@ export async function MainPage({ params }: { params: any }) {
           <Flex vertical={true}>
             <HeaderSCK params={params} />
             <section>
-              <Sale params={params} />
+              {/* <Sale params={params} /> */}
             </section>
             <footer>
               <FooterSCK params={params} />
@@ -39,3 +35,5 @@ export async function MainPage({ params }: { params: any }) {
     </>
   );
 }
+
+export default ProductsInCategory;

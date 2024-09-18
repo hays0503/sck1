@@ -1,12 +1,13 @@
-import { afterEach, beforeAll, afterAll, test, expect,jest,describe } from "@jest/globals";
-import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { test, expect,jest,describe } from "@jest/globals";
+import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom'; // Для дополнительных матчеров
 import AccountButton from "../AccountButton"; // Импортируем тестируемый компонент
 import { NextIntlClientProvider } from "next-intl";
+// import Image from "next/image";
 import messages from "../../../../../messages/ru.json";
 
 // Мокаем next/image, чтобы заменить реальный компонент
-jest.mock('next/image', () => (props: any) => <img {...props} />);
+// jest.mock('next/image', () => (props: any) => <img {...props} />);
 
 // Мокаем useTranslations для возвращения тестового текста
 jest.mock('next-intl', () => ({
