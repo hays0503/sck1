@@ -10,8 +10,8 @@ const { Text } = Typography;
 export default function HeaderNavigation({ params, style }: { params: any,style?:CSSProperties }) {
   const mobile = { flex: "100%" };
   const tablet = { flex: "50%" };
-
   const t = useTranslations();
+  const {isMobileDevice} = JSON.parse(params.mobile.value);
   return (
     <>
     <Flex justify="space-between" align="center" style={style}>
@@ -20,7 +20,7 @@ export default function HeaderNavigation({ params, style }: { params: any,style?
         <Text>8888 888 88 88</Text>
       </Flex>
       {
-      params?.mobile?.value !== "true" &&
+      isMobileDevice !== "true" &&
       <Flex justify="center" align="center" gap={"10px"}>
         <Link href={`/`}><Text>{t("o-nas")}</Text></Link>
 

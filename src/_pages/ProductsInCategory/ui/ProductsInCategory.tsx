@@ -12,15 +12,19 @@ import React from "react";
 
 const ProductsInCategory:React.FC<{ params: any }> = ({ params }) => {
 
-  const fallback = {
-    [UrlApi.getCity]: getCityFromMockData(),//fetchCity,
-    [UrlApi.getCategory]: fetchCategory,
-  };
+  // const fallback = {
+  //   [UrlApi.getCity]: getCityFromMockData(),//fetchCity,
+  //   [UrlApi.getCategory]: fetchCategory,
+  // };
 
   return (
     <>
       <ProvidersServer>
-        <ProvidersClient fallback={fallback} params={params}>
+        <ProvidersClient 
+        // fallback={fallback}
+        fallback={{}}
+        params={params}
+        >
           <Flex vertical={true}>
             <HeaderSCK params={params} />
             <section>

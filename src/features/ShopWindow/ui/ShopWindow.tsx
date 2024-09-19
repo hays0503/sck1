@@ -17,11 +17,8 @@ export default function ShopWindow({
   const filteredProductsCurrentCity = products.filter((i: Products) => {
     return i?.price?.hasOwnProperty(currentCityRU);
   });
-  console.log("products ", products.length);
-  console.log(
-    "filteredProductsCurrentCity ",
-    filteredProductsCurrentCity.length
-  );
+  const {deviceType} = JSON.parse(params.mobile.value);
+  console.log("deviceType",deviceType)
   return (
     <Flex
       gap={"15px"}
@@ -30,7 +27,7 @@ export default function ShopWindow({
         backgroundColor: "#fffffff6",
       }}
     >
-      <CarouselShopSCK>
+      <CarouselShopSCK deviceType={deviceType}>
         {filteredProductsCurrentCity.map((i: Products) => (
           <ProductCard key={i.id} product={i} currentCityRU={currentCityRU} />
         ))}

@@ -1,4 +1,4 @@
-import { UrlApiWithDomain,UrlRevalidate } from "@/shared/api/url";
+import { UrlApiWithDomain, UrlRevalidate } from "@/shared/api/url";
 import type { Metadata } from "next";
 import { unstable_setRequestLocale } from "next-intl/server";
 
@@ -9,31 +9,30 @@ export const metadata: Metadata = {
 
 
 export async function generateStaticParams() {
-  const fetchCity = await (await fetch(UrlApiWithDomain.getCity,{
-    ...UrlRevalidate.getCity,
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    }
-  })).json();
-  const city = fetchCity.map((i:any)=>({city:i.additional_data.EN}));
-  return city
+  const fetchCity = await (
+    await fetch(UrlApiWithDomain.getCity, {
+      ...UrlRevalidate.getCity,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+  ).json();
+  const city = fetchCity.map((i: any) => ({ city: i.additional_data.EN }));
+  return city;
 }
 
 export default async function RootLayout({
   children,
-  params: { locale,city},
+  params: { locale, city },
 }: {
   children: React.ReactNode;
-  params: { locale: string,city:string};
+  params: { locale: string; city: string };
 }) {
-
   unstable_setRequestLocale(locale);
   return (
-    <html lang={locale} >
-      <body>
-        {children}
-      </body>
+    <html lang={locale}>
+      <body>{children}</body>
     </html>
   );
 }

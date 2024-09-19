@@ -52,7 +52,7 @@ export default function Sale({ params }: { params: any }) {
         </h2>
       </Flex>
       {/* Витрина */}
-      <ShopWindow params={{}} products={Products} />
+      <ShopWindow params={params} products={Products} />
       <Button
         type="dashed"
         size="large"

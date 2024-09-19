@@ -4,9 +4,12 @@ import "react-multi-carousel/lib/styles.css";
 
 export default function CarouselShopSCK({
   children,
+  deviceType
 }: {
   children: React.ReactNode;
+  deviceType:string
 }) {
+
   return (
     <div
       style={{
@@ -17,17 +20,18 @@ export default function CarouselShopSCK({
       }}
     >
       <Carousel
+        deviceType={deviceType}
         additionalTransfrom={0}
         arrows
         autoPlaySpeed={3000}
         centerMode={false}
         className=""
-        containerClass="container"
+        containerClass="carousel-container"
+        itemClass='carousel-image-item'
         dotListClass=""
         draggable
         focusOnSelect={false}
         infinite
-        itemClass=""
         keyBoardControl
         minimumTouchDrag={80}
         pauseOnHover
@@ -60,7 +64,7 @@ export default function CarouselShopSCK({
         sliderClass=""
         slidesToSlide={1}
         swipeable
-        ssr
+        ssr={true}
       >
         {children}
       </Carousel>
