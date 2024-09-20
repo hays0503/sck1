@@ -11,7 +11,7 @@ import { Category } from "@/shared/types/category";
 import { Flex } from "antd";
 import { CSSProperties, useEffect, useState } from "react";
 
-export default function HeaderMenu({ params,style }: { params: any,style:CSSProperties }) {
+export default function HeaderMenu({ params,style,carousel }: { params: any,style:CSSProperties,carousel?:boolean }) {
   const CategoriesData = useFetcherCategory().data ?? [];
   const [selectCategory, setSelectCategory] = useState<Category>(CategoriesData[6]); 
   useEffect(() => {}, [CategoriesData]);
@@ -31,7 +31,7 @@ export default function HeaderMenu({ params,style }: { params: any,style:CSSProp
       </Flex>
       <Flex vertical={true} gap={"100px"} style={{ width: "100%" }}>
         <MenuWithOverflow selectCategory={selectCategory}/>
-        <CarouselSCK selectCategory={selectCategory} isMobile={params.isMobile}/>
+        {carousel && <CarouselSCK selectCategory={selectCategory} isMobile={params.isMobile}/>}
       </Flex>
 
       </Flex>

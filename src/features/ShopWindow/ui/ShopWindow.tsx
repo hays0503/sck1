@@ -29,7 +29,7 @@ export default function ShopWindow({
     >
       <CarouselShopSCK deviceType={deviceType}>
         {filteredProductsCurrentCity.map((i: Products) => (
-          <ProductCard key={i.id} product={i} currentCityRU={currentCityRU} />
+          <ProductCard key={i.id} product={i} currentCityRU={currentCityRU} params={params}/>
         ))}
       </CarouselShopSCK>
     </Flex>

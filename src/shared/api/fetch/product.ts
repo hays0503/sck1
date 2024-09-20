@@ -7,7 +7,7 @@ import defaultFetcher from "./defaultFetcher";
 
 interface PropsFetcherProducts {
   as:
-    | "slug_prod"
+    | "by_slug"
     | "filter_by_cat"
     | "all/slugs"
     | "by_ids"
@@ -22,7 +22,7 @@ export default function useFetcherProducts({
 }: PropsFetcherProducts) {
   switch (as) {
     // Детали конкретного продукта по его слагу.
-    case "slug_prod": {
+    case "by_slug": {
       const urls = `${UrlApi.getProducts}${params}`
       // eslint-disable-next-line react-hooks/rules-of-hooks
       return useSWR<Products[]>(urls, (url: string) =>

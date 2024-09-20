@@ -4,14 +4,11 @@ import { ProvidersClient } from "@/_app/providers/providersClient";
 import { ProvidersServer } from "@/_app/providers/providersServer";
 import { FooterSCK } from "@/features/FooterSCK";
 import { UrlApi, UrlApiWithDomain, UrlRevalidate } from "@/shared/api/url";
-import { Populates } from "@/shared/types/populates";
-
 import { HeaderSCK } from "@/widgets/HeaderSCK";
-import { Sale } from "@/widgets/Sale";
+import { ProductDetailCard } from "@/widgets/ProductDetailCard";
 import { Flex } from "antd";
 
-
-export async function MainPage({ params }: { params: any }) {
+export default async function ProductPage({ params }: { params: any }) {
 
   const fetchCity = await (
     await fetch(UrlApiWithDomain.getCity, {
@@ -33,21 +30,13 @@ export async function MainPage({ params }: { params: any }) {
     })
   ).json();
 
-  const fetchPopulates = await (
-    await fetch(UrlApiWithDomain.getPopulates, {
-      ...UrlRevalidate.getPopulates,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-  ).json();
 
-  const PopularProductsByIds = `by_ids/${fetchPopulates.flatMap((i: Populates) => i.products).join(",")}`;
-  const UrlApiPopularProductsByIds = UrlApi.getProducts + PopularProductsByIds;
-  const UrlApiWithDomainPopularProductsByIds = UrlApiWithDomain.getProducts + PopularProductsByIds;
+
+  const ProductsBySlug = `${params.slug}`;
+  const UrlApiProductsBySlug = UrlApi.getProducts + ProductsBySlug;
+  const UrlApiWithDomainProductsBySlug = UrlApiWithDomain.getProducts + ProductsBySlug;
   const fetchPopularProductsByIds = await (
-    await fetch(UrlApiWithDomainPopularProductsByIds, {
+    await fetch(UrlApiWithDomainProductsBySlug, {
       ...UrlRevalidate.getProducts,
       headers: {
         "Content-Type": "application/json",
@@ -59,22 +48,20 @@ export async function MainPage({ params }: { params: any }) {
   const fallback = {
     [UrlApi.getCity]: fetchCity,
     [UrlApi.getCategory]: fetchCategory,
-    [UrlApi.getPopulates]: fetchPopulates,
-    [UrlApiPopularProductsByIds]: fetchPopularProductsByIds,
+    [UrlApiProductsBySlug]: fetchPopularProductsByIds,
   };
-
+  
   return (
     <>
       <ProvidersServer>
         <ProvidersClient
           fallback={fallback}
-          // fallback={{}}
           params={params}
         >
           <Flex vertical={true}>
-            <HeaderSCK params={params} carousel/>
+            <HeaderSCK params={params} />
             <section>
-              <Sale params={params} />
+              <ProductDetailCard params={params}/>
             </section>
             <footer>
               <FooterSCK params={params} />

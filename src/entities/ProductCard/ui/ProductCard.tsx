@@ -10,12 +10,15 @@ import { useGetCityParams } from "@/shared/hook/useGetCityParams";
 import useSelectCurrentCity from "@/shared/hook/useSelectCurrentCity";
 import beautifulCost from "@/shared/tools/beautifulCost";
 import useBasket from "@/shared/hook/useBasket";
+import Link from "next/link";
 
 export default function ProductCard({
   product,
+  params,
   currentCityRU,
 }: {
   product: Products;
+  params: any;
   currentCityRU: string;
 }) {
   const localeActive = useLocale();
@@ -44,22 +47,28 @@ export default function ProductCard({
             Рассрочка + Кэшбек
           </span>
         </div>
-        <div
-          style={{
-            position: "relative",
-            width: "232px",
-            height: "230px",
-          }}
+        <Link
+          href={`/${"ru"}/${params.city}/product/${product.slug}`}
+          replace={true}
+          shallow={true}
         >
-          <Image
-            alt="product"
-            src={product.list_url_to_image[0]}
-            fill
+          <div
             style={{
-              objectFit: "contain",
+              position: "relative",
+              width: "232px",
+              height: "230px",
             }}
-          />
-        </div>
+          >
+            <Image
+              alt="product"
+              src={product.list_url_to_image[0]}
+              fill
+              style={{
+                objectFit: "contain",
+              }}
+            />
+          </div>
+        </Link>
         <div className={styles.ProductCardContainerTitle}>
           {selectDataByLangProducts(product, localeActive)}
         </div>

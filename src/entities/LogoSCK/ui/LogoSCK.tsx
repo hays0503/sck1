@@ -1,10 +1,14 @@
+import { useLocale } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function LogoSCK({ params }: { params: any }) {
+  const localeActive = useLocale();
   return (
     <>
-      <Link href={`/${params.locale}/${params.city}`} replace={true}>
+      <a
+        href={`/${localeActive}/${params.city}`}
+        >
         <div
           style={{
             position: "relative",
@@ -26,7 +30,7 @@ export default function LogoSCK({ params }: { params: any }) {
             style={{ objectFit: "contain", objectPosition: "center center" }}
           />
         </div>
-      </Link>
+      </a>
     </>
   );
 }

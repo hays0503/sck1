@@ -1,0 +1,68 @@
+.Container{
+    width: 100%;
+    height: inherit;
+    background-color:white;
+    align-items: center;
+    padding: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.1843137255);
+    @media screen and (max-width: 768px) {
+        width: 100%;
+        margin-top: 10px;   
+        margin-bottom: 10px;      
+    }
+}
+
+.ColorHeader{
+    display: flex;
+}
+
+.ItemContainer{
+    overflow: auto;
+    height: auto;
+}
+
+.ListUl{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 10px;
+
+    label{
+        padding: 2px;
+    }
+}
+
+.Item{
+    width: 64px;
+    height: 64px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.1843137255);
+    padding: 10px;
+}
+
+.ColorImage{
+    width: 54px;
+    height: 54px;
+    border-radius: 2%;
+    width: auto;    
+    &:hover{
+        cursor: pointer;
+        
+    }
+}
+
+.Param{
+    display: flex;
+    grid-gap: 10px;
+    gap: 10px;
+    justify-items: start;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

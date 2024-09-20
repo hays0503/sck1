@@ -64,6 +64,19 @@ const nextConfig = {
         source: "/api/v1/products/set/filter",
         destination: "http://pimenov.kz/api/v1/products/set/filter/",
       },
+      // ревью (обзоры)
+      {
+        source: "/api/v1/reviews/filter_by_prod/:prod_pk",
+        destination:
+          "http://pimenov.kz/api/v1/reviews/filter_by_prod/:prod_pk/",
+      },
+      //Спецификации на товар
+      {
+        source: "/api/v1/specif/filter_by_prod/:prod_pk",
+        destination:
+          "http://pimenov.kz/api/v1/specif/filter_by_prod/:prod_pk/",
+      },
+
       // Обработка картинок (проксирование)
       {
         source: "/media/product_images/:patch*",
