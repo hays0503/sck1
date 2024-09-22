@@ -1,11 +1,10 @@
 import style from "./CardPresent.module.scss";
-import { Tooltip, Typography, Radio, Button, Flex } from "antd";
+import { Tooltip, Typography, Radio } from "antd";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { ProductsDetail } from "@/shared/types/productsDetail";
 import { Products } from "@/shared/types/products";
-import { FrownTwoTone } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { selectDataByLangProducts } from "@/shared/tools/selectDataByLang";
 const { Text, Title } = Typography;
 
@@ -20,7 +19,7 @@ const Build = (present: Products[], localActive: string) => {
             title={selectDataByLangProducts(item, localActive)}
             arrow={true}
           >
-            <a href={`/${localActive}/products/${item.slug}`}>
+            <a href={`/${localActive}/product/${item.slug}`}>
               <Image
                 className={style.ColorImage}
                 src={item.list_url_to_image[0]}

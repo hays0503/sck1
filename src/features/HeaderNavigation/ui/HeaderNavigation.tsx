@@ -15,12 +15,14 @@ export default function HeaderNavigation({ params, style }: { params: any,style?
   return (
     <>
     <Flex justify="space-between" align="center" style={style}>
-      <Flex justify="flex-start" align="center" gap={"10px"}>
+      <Flex justify={isMobileDevice ? "space-between" : "flex-start"} align="center" gap={"10px"} style={{
+        width: isMobileDevice ? "100%" : "auto",
+      }}>
         <ComponentSelectCity params={params} />
         <Text>8888 888 88 88</Text>
       </Flex>
       {
-      isMobileDevice !== "true" &&
+      !isMobileDevice &&
       <Flex justify="center" align="center" gap={"10px"}>
         <Link href={`/`}><Text>{t("o-nas")}</Text></Link>
 

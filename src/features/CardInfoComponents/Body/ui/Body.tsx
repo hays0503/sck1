@@ -46,9 +46,6 @@ const Body = ({
           }
         >
           <ConstInfo product={product} currentCity={currentCityRU} />
-          {product?.present.length !== 0 && (
-            <CardPresent product={product} currentCity={currentCityRU} />
-          )}
         </div>
       </div>
       {/* Описание товара */}

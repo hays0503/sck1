@@ -27,7 +27,7 @@ const CardParameters = ({params,product }: {params:any,product: ProductsDetail |
                     title={selectDataByLangProducts(item, localActive)}
                     arrow={true}
                   >
-                    <a href={`/${localActive}/${params.city}/products/${item.slug}`}>
+                    <a href={`/${localActive}/${params.city}/product/${item.slug}`}>
                       <Image
                         className={style.ColorImage}
                         src={item.list_url_to_image[0]}

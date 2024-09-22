@@ -11,8 +11,8 @@ const DescriptionBody = ({
   title_description,
   body_description,
 }: {
-  title_description: string;
-  body_description: string;
+  title_description: string|undefined;
+  body_description: string|undefined;
 }) => {
   return (
     <Flex align="flex-start" justify="flex-start" vertical={true}>
@@ -27,7 +27,6 @@ export default function Description({
 }: {
   productDescription: iDescription;
 }) {
-  // const [description, setDescription] = useState<iDescription[]>([]);
   const t = useTranslations();
   const localActive = useLocale();
   const CollapseItems: CollapseProps["items"] = [
@@ -48,7 +47,7 @@ export default function Description({
       ),
     },
   ];
-
+  if(!productDescription) return null
   return (
     <Collapse
       items={CollapseItems}

@@ -28,6 +28,6 @@ export default function findRootAndDescendants(categories: Category[], id: numbe
         }
         currentCategory = findCategoryById(categories, currentCategory.parent);
     }
-
+    // @ts-ignore
     return breadcrumbs;
 }

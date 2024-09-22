@@ -56,6 +56,14 @@ export default function CarouselShopSCK({
             items: 2,
             partialVisibilityGutter:40,
           },
+          mobile: {
+            breakpoint: {
+              max: 768,
+              min: 320,
+            },
+            items: 2,
+            partialVisibilityGutter:40,
+          },
         }}
         rewind={false}
         rewindWithAnimation={false}

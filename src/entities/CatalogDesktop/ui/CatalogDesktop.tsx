@@ -17,6 +17,10 @@ export default function CatalogDesktop({
   selectCategory: Category;
   setSelectCategory: (data: Category) => void;
 }) {
+
+  const {isMobileDevice} = JSON.parse(params.mobile.value);
+
+
   const CatalogStyleText: CSSProperties = {
     color: "white",
     padding: "12px 20px 12px 16px",
@@ -27,13 +31,13 @@ export default function CatalogDesktop({
   return (
     <>
       <CatalogPopover
-      role={"catalog-popover"} 
-      params={params} 
-      isOpen={isOpen} 
-      setIsOpen={setIsOpen}
-      CategoriesData={CategoriesData} 
-      selectCategory={selectCategory}
-      setSelectCategory={setSelectCategory}
+        role={"catalog-popover"}
+        params={params}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        CategoriesData={CategoriesData}
+        selectCategory={selectCategory}
+        setSelectCategory={setSelectCategory}
       >
         <Flex
           align="center"
@@ -50,15 +54,20 @@ export default function CatalogDesktop({
               isOpen ? styles.animationHoverOn : styles.animationHoverOff
             }
           ></div>
-          <Divider
-            type="vertical"
-            dashed={true}
-            plain={true}
-            style={{ borderColor: "white", height: "36px" }}
-          />
-          <Flex justify="center" align="center">
-            <span style={CatalogStyleText}>{t("catalog")}</span>
-          </Flex>
+          {
+            !isMobileDevice &&
+            <>
+              <Divider
+                type="vertical"
+                dashed={true}
+                plain={true}
+                style={{ borderColor: "white", height: "36px" }}
+              />
+              <Flex justify="center" align="center">
+                <span style={CatalogStyleText}>{t("catalog")}</span>
+              </Flex>
+            </>
+          }
         </Flex>
       </CatalogPopover>
     </>

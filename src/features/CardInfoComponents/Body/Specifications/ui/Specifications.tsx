@@ -38,7 +38,7 @@ export default function Specifications({ productId }: { productId: number }) {
           size="small"
           labelStyle={{ fontWeight: "bold" }}
           contentStyle={{ fontWeight: "normal", fontStyle: "italic"}} 
-          column={{ xs: 1, sm: 2, md: 3, lg: 3, xl: 4, xxl: 4 }}
+          column={1}
           items={SpecificationsBody(specifications)}
         />
       ),

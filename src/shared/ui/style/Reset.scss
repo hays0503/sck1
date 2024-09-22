@@ -45,3 +45,32 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+.hover-element {
+	cursor: pointer;
+	padding: 10px;
+	&:hover {
+		background-color: rgba(190, 190, 190, 0.137);		
+		padding: 5px;
+	}
+	&:active {
+		background-color: rgba(190, 190, 190, 0.137);		
+		padding: 5px;
+	}
+	&:focus {
+		background-color: rgba(190, 190, 190, 0.137);		
+		padding: 5px;
+	}
+	&:active:focus {
+		background-color: rgba(190, 190, 190, 0.137);		
+		padding: 5px;
+	}
+	&:target {
+		background-color: rgba(190, 190, 190, 0.137);		
+		padding: 5px;
+	}
+	&:target:focus {
+		background-color: rgba(190, 190, 190, 0.137);		
+		padding: 5px;
+	}
+}

@@ -9,8 +9,9 @@ import styles from "./ProductCard.module.scss";
 import { useGetCityParams } from "@/shared/hook/useGetCityParams";
 import useSelectCurrentCity from "@/shared/hook/useSelectCurrentCity";
 import beautifulCost from "@/shared/tools/beautifulCost";
-import useBasket from "@/shared/hook/useBasket";
+
 import Link from "next/link";
+import { useBasketMutate } from "@/shared/hook/useBasket";
 
 export default function ProductCard({
   product,
@@ -24,7 +25,7 @@ export default function ProductCard({
   const localeActive = useLocale();
   const t = useTranslations();
 
-  const { add } = useBasket();
+  const { add, GiftDialog } = useBasketMutate({ product: product });
 
   if (product === null) return null;
   if (currentCityRU === undefined) return null;
@@ -40,80 +41,85 @@ export default function ProductCard({
   const discount = discount_amount_product || discount_amount_category;
 
   return (
-    <div className={styles.ProductCardRoot}>
-      <Flex vertical={true} gap={"20px"}>
-        <div className={styles.ProductCardContainer}>
-          <span className={styles.ProductCardContainerText}>
-            Рассрочка + Кэшбек
-          </span>
-        </div>
-        <Link
-          href={`/${"ru"}/${params.city}/product/${product.slug}`}
-          replace={true}
-          shallow={true}
-        >
-          <div
-            style={{
-              position: "relative",
-              width: "232px",
-              height: "230px",
+    <>
+      {GiftDialog}
+      <div className={styles.ProductCardRoot}>
+        <Flex vertical={true} gap={"20px"}>
+          <div className={styles.ProductCardContainer}>
+            <span className={styles.ProductCardContainerText}>
+              Рассрочка + Кэшбек
+            </span>
+          </div>
+          <a
+            href={`/${"ru"}/${params.city}/product/${product.slug}`}
+            // replace={true}
+            // shallow={true}
+          >
+            <div
+              style={{
+                position: "relative",
+                width: "232px",
+                height: "230px",
+              }}
+            >
+              <Image
+                alt="product"
+                src={product.list_url_to_image[0]}
+                fill
+                style={{
+                  objectFit: "contain",
+                }}
+              />
+            </div>
+          </a>
+          <div className={styles.ProductCardContainerTitle}>
+            {selectDataByLangProducts(product, localeActive)}
+          </div>
+          <Flex gap={"5px"} align={"center"}>
+            <Flex gap={"5px"} align={"center"}>
+              <Image alt="star" src="/star.svg" width={20} height={20} />
+              <span className={styles.ProductCardContainerStar}>
+                {product.average_rating ?? 0}
+              </span>
+            </Flex>
+            <Flex gap={"5px"} align={"center"}>
+              <span className={styles.ProductCardContainerComments}>
+                {product.reviews_count ?? 0}
+              </span>
+              <span className={styles.ProductCardContainerComments}>
+                Отзыва
+              </span>
+            </Flex>
+          </Flex>
+          <Flex gap={5}>
+            <span className={styles.ProductCardContainerPrice}>
+              {beautifulCost(price)}
+            </span>
+
+            {old_price && (
+              <>
+                <s className={styles.ProductCardContainerOldPrice}>
+                  {beautifulCost(old_price)}
+                </s>
+                <div className={styles.ProductCardContainerDiscount}>
+                  <span>{`-${discount}%`}</span>
+                </div>
+              </>
+            )}
+          </Flex>
+          <Button
+            className={styles.ProductCardContainerAddToCartButton}
+            onClick={() => {
+              add({ id_prod: product.id });
             }}
           >
-            <Image
-              alt="product"
-              src={product.list_url_to_image[0]}
-              fill
-              style={{
-                objectFit: "contain",
-              }}
-            />
-          </div>
-        </Link>
-        <div className={styles.ProductCardContainerTitle}>
-          {selectDataByLangProducts(product, localeActive)}
-        </div>
-        <Flex gap={"5px"} align={"center"}>
-          <Flex gap={"5px"} align={"center"}>
-            <Image alt="star" src="/star.svg" width={20} height={20} />
-            <span className={styles.ProductCardContainerStar}>
-              {product.average_rating ?? 0}
+            <Image alt="cart" src="/cart.svg" width={20} height={20} />
+            <span className={styles.ProductCardContainerAddToCartButtonText}>
+              {t("v-korzinu")}
             </span>
-          </Flex>
-          <Flex gap={"5px"} align={"center"}>
-            <span className={styles.ProductCardContainerComments}>
-              {product.reviews_count ?? 0}
-            </span>
-            <span className={styles.ProductCardContainerComments}>Отзыва</span>
-          </Flex>
+          </Button>
         </Flex>
-        <Flex gap={5}>
-          <span className={styles.ProductCardContainerPrice}>
-            {beautifulCost(price)}
-          </span>
-
-          {old_price && (
-            <>
-              <s className={styles.ProductCardContainerOldPrice}>
-                {beautifulCost(old_price)}
-              </s>
-              <div className={styles.ProductCardContainerDiscount}>
-                <span>{`-${discount}%`}</span>
-              </div>
-            </>
-          )}
-        </Flex>
-        <Button
-          className={styles.ProductCardContainerAddToCartButton}
-          onClick={() => {
-            add({ id_prod: product.id });
-          }}
-        >
-          <Image alt="cart" src="/cart.svg" width={20} height={20} />
-          <span className={styles.ProductCardContainerAddToCartButtonText}>
-            {t("v-korzinu")}
-          </span>
-        </Button>
-      </Flex>
-    </div>
+      </div>
+    </>
   );
 }

@@ -1,10 +1,11 @@
 "use client";
-import useBasket from "@/shared/hook/useBasket";
+import { useBasketView } from "@/shared/hook/useBasket";
+import { Products } from "@/shared/types/products";
 import { Button, Divider, Flex, Typography,Badge } from "antd";
 const { Text } = Typography;
 
 export default function BasketButton() {
-  const { get:{basketGet} } = useBasket();
+  const { get:{basketGet} } = useBasketView();
   return (
     <>
       <Button size="large" style={{ backgroundColor: "#3E54CF",border:"4px" }}>
