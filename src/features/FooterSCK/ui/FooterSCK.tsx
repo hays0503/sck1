@@ -9,6 +9,7 @@ import { LogoSCK } from "@/entities/LogoSCK";
 const { Title, Text } = Typography;
 
 export default function FooterSCK({ params }: { params: any }) {
+  
   const t = useTranslations();
 
   const localActive = useLocale();

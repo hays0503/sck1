@@ -1,10 +1,11 @@
 "use client";
 
-import { Flex, Typography } from "antd";
+import { Divider, Flex, Typography } from "antd";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { ComponentSelectCity } from "@/entities/ComponentSelectCity";
 import { CSSProperties } from "react";
+import { LangSwitcher } from "@/entities/LangSwitcher";
 const { Text } = Typography;
 
 export default function HeaderNavigation({ params, style }: { params: any,style?:CSSProperties }) {
@@ -33,8 +34,13 @@ export default function HeaderNavigation({ params, style }: { params: any,style?
         <Link href={`/`}><Text>{t("nashi-garantii")}</Text></Link>
 
         <Link href={`/`}><Text>{t("kontakty")}</Text></Link>
+      
+        <Divider type="vertical"/>
+
+        <LangSwitcher params={params}/>
       </Flex>
       }
+
     </Flex>
     </>
   );

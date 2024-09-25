@@ -85,4 +85,26 @@ const sendUpdatedBasketToServer = async (
   return data;
 };
 
-export { createNewProduct, updateProduct, updateProductQuantity, sendUpdatedBasketToServer };
+const deleteBasket = async ({uuid_id}:{uuid_id: string}) => {
+  const response = await fetch(`${UrlApi.getBasketApi}/${uuid_id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      uuid_id,
+      basket_items:[]
+    }),
+  });
+
+  const data = await response.json();
+  return data;
+};
+
+export {
+  createNewProduct,
+  updateProduct,
+  updateProductQuantity,
+  sendUpdatedBasketToServer,
+  deleteBasket,
+};

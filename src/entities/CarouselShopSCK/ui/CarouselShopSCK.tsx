@@ -24,16 +24,16 @@ export default function CarouselShopSCK({
         additionalTransfrom={0}
         arrows
         autoPlaySpeed={3000}
-        centerMode={false}
+        centerMode={true}
         className=""
         containerClass="carousel-container"
         itemClass='carousel-image-item'
         dotListClass=""
         draggable
-        focusOnSelect={false}
+        focusOnSelect={true}
         infinite
         keyBoardControl
-        minimumTouchDrag={80}
+        minimumTouchDrag={20}
         pauseOnHover
         renderArrowsWhenDisabled={false}
         renderButtonGroupOutside={false}
@@ -53,16 +53,16 @@ export default function CarouselShopSCK({
               max: 1024,
               min: 768,
             },
-            items: 2,
-            partialVisibilityGutter:40,
+            items:1,
+            partialVisibilityGutter:1,
           },
           mobile: {
             breakpoint: {
               max: 768,
               min: 320,
             },
-            items: 2,
-            partialVisibilityGutter:40,
+            items: 1,
+            // partialVisibilityGutter:10,
           },
         }}
         rewind={false}

@@ -2,6 +2,7 @@
 
 import { ProvidersClient } from "@/_app/providers/providersClient";
 import { ProvidersServer } from "@/_app/providers/providersServer";
+import { FooterMobileSCK } from "@/features/FooterMobileSCK";
 import { FooterSCK } from "@/features/FooterSCK";
 import { UrlApi, UrlApiWithDomain, UrlRevalidate } from "@/shared/api/url";
 import { HeaderSCK } from "@/widgets/HeaderSCK";
@@ -64,7 +65,8 @@ export default async function ProductPage({ params }: { params: any }) {
               <ProductDetailCard params={params}/>
             </section>
             <footer>
-              <FooterSCK params={params} />
+            <FooterMobileSCK params={params} />
+            <FooterSCK params={params} />
             </footer>
           </Flex>
         </ProvidersClient>

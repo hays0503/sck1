@@ -5,6 +5,7 @@ import defaultFetcher from "../api/fetch/defaultFetcher";
 import { v4 as uuidv4 } from "uuid";
 import useSWR from "swr";
 import {
+  deleteBasket,
   sendUpdatedBasketToServer,
   updateProductQuantity,
 } from "../tools/basketManipulator";
@@ -14,12 +15,15 @@ import useFetcherProducts from "../api/fetch/product";
 import { Products } from "../types/products";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import {
-  GiftOutlined
-} from '@ant-design/icons';
+import { GiftOutlined } from "@ant-design/icons";
+import { iBasketItem } from "../types/basket";
 
 // Хук для управления корзиной
-const useBasketMutate = ({ product }: { product?: ProductsDetail | Products }) => {
+const useBasketMutate = ({
+  product,
+}: {
+  product?: ProductsDetail | Products;
+}) => {
   const [value, setValue] = useLocalStorage("uuid_id", uuidv4);
   const [showGiftDialog, setShowGiftDialog] = useState<{
     isShow: boolean;
@@ -39,7 +43,6 @@ const useBasketMutate = ({ product }: { product?: ProductsDetail | Products }) =
   } = useSWR(`${UrlApi.getBasketApi}/${value}`, defaultFetcher);
 
   const GiftDialogComponent = () => {
-
     const t = useTranslations();
 
     // @ts-ignore
@@ -62,35 +65,43 @@ const useBasketMutate = ({ product }: { product?: ProductsDetail | Products }) =
         width={"100%"}
       >
         <Flex vertical gap={10}>
-        <h1 style={{ fontWeight: "bold" }}>{t('vyberite-podarok')} <GiftOutlined /></h1>
-        <ul style={{ listStyleType: "none",overflow:"auto",height:"50dvh" }}>
-          {productsDetail?.present.map((gift, index) => (
-            <li key={index} style={{margin: "10px"}}>
-              <Flex
-                className="hover-element"
-                gap={5}
-                style={{ cursor: "pointer", padding: "10px",border: "1px solid #0000002f" }}
-                onClick={() => {
-                  setShowGiftDialog({ isShow: false, id_prod: null });
-                  addOrRemoveProduct({
-                    id_prod: gift?.id,
-                    id_gift: gift?.id,
-                    delta: 1,
-                  });
-                }}
-              >
-                <Image
-                  src={gift?.list_url_to_image[0]}
-                  width={100}
-                  height={100}
-                  style={{ objectFit: "scale-down" }}
-                  alt={gift?.name_product}
-                />
-                <span>{gift?.name_product}</span>
-              </Flex>
-            </li>
-          ))}
-        </ul>
+          <h1 style={{ fontWeight: "bold" }}>
+            {t("vyberite-podarok")} <GiftOutlined />
+          </h1>
+          <ul
+            style={{ listStyleType: "none", overflow: "auto", height: "50dvh" }}
+          >
+            {productsDetail?.present.map((gift, index) => (
+              <li key={index} style={{ margin: "10px" }}>
+                <Flex
+                  className="hover-element"
+                  gap={5}
+                  style={{
+                    cursor: "pointer",
+                    padding: "10px",
+                    border: "1px solid #0000002f",
+                  }}
+                  onClick={() => {
+                    setShowGiftDialog({ isShow: false, id_prod: null });
+                    addOrRemoveProduct({
+                      id_prod: productsDetail?.id,
+                      id_gift: gift?.id,
+                      delta: 1,
+                    });
+                  }}
+                >
+                  <Image
+                    src={gift?.list_url_to_image[0]}
+                    width={100}
+                    height={100}
+                    style={{ objectFit: "scale-down" }}
+                    alt={gift?.name_product}
+                  />
+                  <span>{gift?.name_product}</span>
+                </Flex>
+              </li>
+            ))}
+          </ul>
         </Flex>
       </Modal>
     );
@@ -135,8 +146,33 @@ const useBasketMutate = ({ product }: { product?: ProductsDetail | Products }) =
         }
       }
     },
-    remove: (params: { id_prod: number }) =>
-      addOrRemoveProduct({ ...params, delta: -1 }), // Уменьшение на 1
+    increase: (params: { id_prod: number }) => {
+      const increaseProduct = basketGet?.basket_items?.find(
+        (item: iBasketItem) => item.prod_id === params.id_prod
+      );
+      if (increaseProduct.gift_id) {
+        addOrRemoveProduct({
+          ...params,
+          id_gift: increaseProduct.gift_id,
+          delta: 1,
+        });
+      } else {
+        addOrRemoveProduct({ ...params, delta: 1 });
+      }
+    },
+    remove: (params: { id_prod: number }) => {
+      if (
+        basketGet?.basket_items.reduce(
+          (acc: number, item: iBasketItem) => acc + item.count,
+          0
+        ) === 1
+      ) {
+        deleteBasket({ uuid_id: value });
+        basketMutate({ uuid_id: value, basket_items: [] });
+      } else {
+        addOrRemoveProduct({ ...params, delta: -1 });
+      }
+    },
     get: { basketGet, basketError, basketMutate },
     GiftDialog: <>{showGiftDialog.isShow && <GiftDialogComponent />}</>,
   };
@@ -158,13 +194,14 @@ const useBasketView = () => {
   const {
     data: basketGet,
     error: basketError,
+    isLoading: basketIsLoading,
     mutate: basketMutate,
   } = useSWR(`${UrlApi.getBasketApi}/${value}`, defaultFetcher);
 
-
   return {
-    get: { basketGet}
+    get: { basketGet },
+    isLoading: { basketIsLoading },
   };
 };
 
-export {useBasketMutate, useBasketView};
+export { useBasketMutate, useBasketView };

@@ -1,6 +1,6 @@
 "use client";
 import { AccountButton } from "@/entities/AccountButton";
-import { BasketButton } from "@/entities/BasketButton";
+import { BasketButton } from "@/entities/Basket/BasketButton";
 import { CarouselSCK } from "@/entities/CarouselBannerSCK";
 import { CatalogDesktop } from "@/entities/CatalogDesktop";
 import { LogoSCK } from "@/entities/LogoSCK";
@@ -31,12 +31,14 @@ export default function HeaderMenu({
       <Flex gap={"15px"} vertical={true} style={style}>
         <Flex gap={"10px"} align="center">
           <LogoSCK params={params} />
-          <CatalogDesktop
-            params={params}
-            CategoriesData={CategoriesData}
-            selectCategory={selectCategory}
-            setSelectCategory={setSelectCategory}
-          />
+          {!isMobileDevice && (
+            <CatalogDesktop
+              params={params}
+              CategoriesData={CategoriesData}
+              selectCategory={selectCategory}
+              setSelectCategory={setSelectCategory}
+            />
+          )}
           <SearchLine params={params} />
           {!isMobileDevice && (
             <>

@@ -2,6 +2,7 @@
 
 import { ProvidersClient } from "@/_app/providers/providersClient";
 import { ProvidersServer } from "@/_app/providers/providersServer";
+import { FooterMobileSCK } from "@/features/FooterMobileSCK";
 import { FooterSCK } from "@/features/FooterSCK";
 import { UrlApi, UrlApiWithDomain, UrlRevalidate } from "@/shared/api/url";
 import { Populates } from "@/shared/types/populates";
@@ -10,9 +11,7 @@ import { HeaderSCK } from "@/widgets/HeaderSCK";
 import { Sale } from "@/widgets/Sale";
 import { Flex } from "antd";
 
-
 export async function MainPage({ params }: { params: any }) {
-
   const fetchCity = await (
     await fetch(UrlApiWithDomain.getCity, {
       ...UrlRevalidate.getCity,
@@ -43,9 +42,12 @@ export async function MainPage({ params }: { params: any }) {
     })
   ).json();
 
-  const PopularProductsByIds = `by_ids/${fetchPopulates.flatMap((i: Populates) => i.products).join(",")}`;
+  const PopularProductsByIds = `by_ids/${fetchPopulates
+    .flatMap((i: Populates) => i.products)
+    .join(",")}`;
   const UrlApiPopularProductsByIds = UrlApi.getProducts + PopularProductsByIds;
-  const UrlApiWithDomainPopularProductsByIds = UrlApiWithDomain.getProducts + PopularProductsByIds;
+  const UrlApiWithDomainPopularProductsByIds =
+    UrlApiWithDomain.getProducts + PopularProductsByIds;
   const fetchPopularProductsByIds = await (
     await fetch(UrlApiWithDomainPopularProductsByIds, {
       ...UrlRevalidate.getProducts,
@@ -72,12 +74,13 @@ export async function MainPage({ params }: { params: any }) {
           params={params}
         >
           <Flex vertical={true}>
-            <HeaderSCK params={params} carousel/>
+            <HeaderSCK params={params} carousel />
             <section>
               <Sale params={params} />
             </section>
             <footer>
-              <FooterSCK params={params} />
+                <FooterMobileSCK params={params} />
+                <FooterSCK params={params} />
             </footer>
           </Flex>
         </ProvidersClient>

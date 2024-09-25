@@ -6,11 +6,8 @@ import { useLocale, useTranslations } from "next-intl";
 
 import Image from "next/image";
 import styles from "./ProductCard.module.scss";
-import { useGetCityParams } from "@/shared/hook/useGetCityParams";
-import useSelectCurrentCity from "@/shared/hook/useSelectCurrentCity";
 import beautifulCost from "@/shared/tools/beautifulCost";
 
-import Link from "next/link";
 import { useBasketMutate } from "@/shared/hook/useBasket";
 
 export default function ProductCard({
@@ -44,21 +41,21 @@ export default function ProductCard({
     <>
       {GiftDialog}
       <div className={styles.ProductCardRoot}>
-        <Flex vertical={true} gap={"20px"}>
+        <Flex vertical={true} justify="space-between" align="center" style={{height: "100%"}}>
           <div className={styles.ProductCardContainer}>
             <span className={styles.ProductCardContainerText}>
               Рассрочка + Кэшбек
             </span>
           </div>
           <a
-            href={`/${"ru"}/${params.city}/product/${product.slug}`}
+            href={`/${localeActive}/${params.city}/product/${product.slug}`}
             // replace={true}
             // shallow={true}
           >
             <div
               style={{
                 position: "relative",
-                width: "232px",
+                width: "200px",
                 height: "230px",
               }}
             >
@@ -67,7 +64,7 @@ export default function ProductCard({
                 src={product.list_url_to_image[0]}
                 fill
                 style={{
-                  objectFit: "contain",
+                  objectFit: "scale-down",
                 }}
               />
             </div>
@@ -91,20 +88,20 @@ export default function ProductCard({
               </span>
             </Flex>
           </Flex>
-          <Flex gap={5}>
+          <Flex gap={5} justify="space-evenly">
             <span className={styles.ProductCardContainerPrice}>
               {beautifulCost(price)}
             </span>
 
             {old_price && (
-              <>
+              <Flex vertical>
                 <s className={styles.ProductCardContainerOldPrice}>
                   {beautifulCost(old_price)}
                 </s>
                 <div className={styles.ProductCardContainerDiscount}>
                   <span>{`-${discount}%`}</span>
                 </div>
-              </>
+              </Flex>
             )}
           </Flex>
           <Button
