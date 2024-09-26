@@ -3,12 +3,18 @@ import { selectDataByLangProducts } from "@/shared/tools/selectDataByLang";
 import { Products } from "@/shared/types/products";
 import { Button, Flex } from "antd";
 import { useLocale, useTranslations } from "next-intl";
-
+import { HeartOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import styles from "./ProductCard.module.scss";
 import beautifulCost from "@/shared/tools/beautifulCost";
+import
+{ message }
+from
+"antd"
+;
 
 import { useBasketMutate } from "@/shared/hook/useBasket";
+import { useLocalStorage } from "usehooks-ts";
 
 export default function ProductCard({
   product,
@@ -22,7 +28,11 @@ export default function ProductCard({
   const localeActive = useLocale();
   const t = useTranslations();
 
+  const [messageApi, contextHolder] = message.useMessage();
+
   const { add, GiftDialog } = useBasketMutate({ product: product });
+
+  const [FavoritesProduct,setFavoritesProduct] = useLocalStorage<number[]>("FavoritesProduct", []);
 
   if (product === null) return null;
   if (currentCityRU === undefined) return null;
@@ -40,8 +50,14 @@ export default function ProductCard({
   return (
     <>
       {GiftDialog}
+      {contextHolder}
       <div className={styles.ProductCardRoot}>
-        <Flex vertical={true} justify="space-between" align="center" style={{height: "100%"}}>
+        <Flex
+          vertical={true}
+          justify="space-between"
+          align="center"
+          style={{ height: "100%" }}
+        >
           <div className={styles.ProductCardContainer}>
             <span className={styles.ProductCardContainerText}>
               Рассрочка + Кэшбек
@@ -104,17 +120,29 @@ export default function ProductCard({
               </Flex>
             )}
           </Flex>
-          <Button
-            className={styles.ProductCardContainerAddToCartButton}
-            onClick={() => {
-              add({ id_prod: product.id });
-            }}
-          >
-            <Image alt="cart" src="/cart.svg" width={20} height={20} />
-            <span className={styles.ProductCardContainerAddToCartButtonText}>
-              {t("v-korzinu")}
-            </span>
-          </Button>
+          <Flex justify="space-evenly" align="center" style={{ width: "100%" }}>
+            <Button
+              className={styles.ProductCardContainerAddToCartButton}
+              onClick={() => {
+                add({ id_prod: product.id });
+              }}
+            >
+              <Image alt="cart" src="/cart.svg" width={20} height={20} />
+              <span className={styles.ProductCardContainerAddToCartButtonText}>
+                {t("v-korzinu")}
+              </span>
+            </Button>
+
+            <Button icon={<HeartOutlined />} style={{ width: "40px", height: "40px" }}
+              onClick={() => {
+                setFavoritesProduct([...FavoritesProduct, product.id]);
+                messageApi.open({
+                  type: 'success',
+                  content: `${t("dodano-v-favoritki")} ${selectDataByLangProducts(product, localeActive)}`,
+                });
+              }}
+            />
+          </Flex>
         </Flex>
       </div>
     </>

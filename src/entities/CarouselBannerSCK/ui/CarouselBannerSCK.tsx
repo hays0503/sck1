@@ -57,6 +57,7 @@ export default function CarouselBannerSCK({
           additionalTransfrom={0}
           arrows
           autoPlaySpeed={3000}
+          autoPlay
           centerMode={false}
           className=""
           containerClass="container"
@@ -98,7 +99,7 @@ export default function CarouselBannerSCK({
           rewindWithAnimation={false}
           rtl={false}
           shouldResetAutoplay
-          showDots
+          // showDots
           sliderClass=""
           slidesToSlide={1}
           swipeable

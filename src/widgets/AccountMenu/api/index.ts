@@ -1,0 +1,1 @@
+export {useGetFavoritesProduct} from './getFavoritesProduct'

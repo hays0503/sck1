@@ -167,5 +167,8 @@
   "total": "Итог",
   "profil": "Профиль",
   "katalog": "Каталог",
-  "glavnaya": "Главная"
+  "glavnaya": "Главная",
+  "dodano-v-favoritki": "Добавлено в избранное",
+  "ubrat-iz-izbrannogo": "Убрать из избранного",
+  "it-is-all-nothing-more": "Это все, ничего больше."
 }

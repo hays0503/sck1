@@ -4,22 +4,22 @@ import "react-multi-carousel/lib/styles.css";
 
 export default function CarouselShopSCK({
   children,
-  deviceType
+  deviceType,
 }: {
   children: React.ReactNode;
-  deviceType:string
+  deviceType: string;
 }) {
-
   return (
     <div
       style={{
-        cursor:"grab",        
+        cursor: "grab",
         position: "relative",
         height: "100%",
         width: "100%",
       }}
     >
       <Carousel
+        // partialVisbile
         deviceType={deviceType}
         additionalTransfrom={0}
         arrows
@@ -27,7 +27,7 @@ export default function CarouselShopSCK({
         centerMode={true}
         className=""
         containerClass="carousel-container"
-        itemClass='carousel-image-item'
+        itemClass="carousel-image-item"
         dotListClass=""
         draggable
         focusOnSelect={true}
@@ -44,25 +44,25 @@ export default function CarouselShopSCK({
               max: 3000,
               min: 1024,
             },
-            items: 4,
-            partialVisibilityGutter:40,
-            slidesToSlide:2
+            items: 3,
+            // partialVisibilityGutter: 40,
+            slidesToSlide: 2,
           },
           tablet: {
             breakpoint: {
               max: 1024,
               min: 768,
             },
-            items:1,
-            partialVisibilityGutter:1,
+            items: 1,
+            // partialVisibilityGutter: 100,
           },
           mobile: {
             breakpoint: {
               max: 768,
-              min: 320,
+              min: 0,
             },
             items: 1,
-            // partialVisibilityGutter:10,
+            // partialVisibilityGutter: 100,
           },
         }}
         rewind={false}

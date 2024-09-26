@@ -170,5 +170,8 @@
   "total": "Total",
   "profil": "Profile",
   "katalog": "Catalog",
-  "glavnaya": "Home"
+  "glavnaya": "Home",
+  "dodano-v-favoritki": "Added to favorites",
+  "ubrat-iz-izbrannogo": "Remove from favorites",
+  "it-is-all-nothing-more": "It is all, nothing more"
 }
