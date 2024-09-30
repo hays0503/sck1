@@ -1,3 +1,4 @@
+
 import { CarouselShopSCK } from "@/entities/CarouselShopSCK";
 import { ProductCard } from "@/entities/ProductCard";
 import { useGetCityParams } from "@/shared/hook/useGetCityParams";
@@ -5,7 +6,8 @@ import useSelectCurrentCity from "@/shared/hook/useSelectCurrentCity";
 import { Products } from "@/shared/types/products";
 import { Flex } from "antd";
 
-export default function ShopWindow({
+
+export default function ProductShowcase({
   params,
   products,
 }: {
@@ -14,6 +16,11 @@ export default function ShopWindow({
 }) {
   const currentCityEN = useGetCityParams();
   const currentCityRU = useSelectCurrentCity("en", currentCityEN)?.name_city!;
+  // Нам нечего демонстрировать 
+  if (products.length === 0) {
+    return null;
+  }
+
   const filteredProductsCurrentCity = products.filter((i: Products) => {
     return i?.price?.hasOwnProperty(currentCityRU);
   });
@@ -26,11 +33,9 @@ export default function ShopWindow({
         backgroundColor: "#fffffff6",
       }}
     >
-      <CarouselShopSCK deviceType={deviceType}>
         {filteredProductsCurrentCity.map((i: Products) => (
           <ProductCard key={i.id} product={i} currentCityRU={currentCityRU} params={params}/>
         ))}
-      </CarouselShopSCK>
     </Flex>
   );
 }

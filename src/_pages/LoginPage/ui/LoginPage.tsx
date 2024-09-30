@@ -6,13 +6,12 @@ import { FooterMobileSCK } from "@/features/FooterMobileSCK";
 import { FooterSCK } from "@/features/FooterSCK";
 import { UrlApi, UrlApiWithDomain, UrlRevalidate } from "@/shared/api/url";
 import { Populates } from "@/shared/types/populates";
-import { AccountMenu } from "@/widgets/AccountMenu";
 
 import { HeaderSCK } from "@/widgets/HeaderSCK";
+import { Login } from "@/widgets/Login";
 import { Sale } from "@/widgets/Sale";
 import { Flex } from "antd";
-
-export async function AccountPage({ params }: { params: any }) {
+export default async function LoginPage({ params }: { params: any }) {
   const fetchCity = await (
     await fetch(UrlApiWithDomain.getCity, {
       ...UrlRevalidate.getCity,
@@ -33,9 +32,37 @@ export async function AccountPage({ params }: { params: any }) {
     })
   ).json();
 
+  const fetchPopulates = await (
+    await fetch(UrlApiWithDomain.getPopulates, {
+      ...UrlRevalidate.getPopulates,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+  ).json();
+
+  const PopularProductsByIds = `by_ids/${fetchPopulates
+    .flatMap((i: Populates) => i.products)
+    .join(",")}`;
+  const UrlApiPopularProductsByIds = UrlApi.getProducts + PopularProductsByIds;
+  const UrlApiWithDomainPopularProductsByIds =
+    UrlApiWithDomain.getProducts + PopularProductsByIds;
+  const fetchPopularProductsByIds = await (
+    await fetch(UrlApiWithDomainPopularProductsByIds, {
+      ...UrlRevalidate.getProducts,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+  ).json();
+
   const fallback = {
     [UrlApi.getCity]: fetchCity,
     [UrlApi.getCategory]: fetchCategory,
+    [UrlApi.getPopulates]: fetchPopulates,
+    [UrlApiPopularProductsByIds]: fetchPopularProductsByIds,
   };
 
   return (
@@ -43,12 +70,13 @@ export async function AccountPage({ params }: { params: any }) {
       <ProvidersServer>
         <ProvidersClient
           fallback={fallback}
+          // fallback={{}}
           params={params}
         >
           <Flex vertical={true} gap={"15px"}>
             <HeaderSCK params={params}/>
             <section>
-              <AccountMenu params={params} />
+              <Login params={params} />
             </section>
             <footer style={{position:"relative",width:"100%",bottom:"0"}}>
                 <FooterMobileSCK params={params} />

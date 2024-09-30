@@ -64,7 +64,7 @@ export default async function ProductPage({ params }: { params: any }) {
             <section>
               <ProductDetailCard params={params}/>
             </section>
-            <footer>
+            <footer style={{position:"relative",width:"100%",bottom:"0"}}>
             <FooterMobileSCK params={params} />
             <FooterSCK params={params} />
             </footer>

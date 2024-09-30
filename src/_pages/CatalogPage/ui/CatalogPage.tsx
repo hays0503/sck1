@@ -5,14 +5,12 @@ import { ProvidersServer } from "@/_app/providers/providersServer";
 import { FooterMobileSCK } from "@/features/FooterMobileSCK";
 import { FooterSCK } from "@/features/FooterSCK";
 import { UrlApi, UrlApiWithDomain, UrlRevalidate } from "@/shared/api/url";
-import { Populates } from "@/shared/types/populates";
-import { AccountMenu } from "@/widgets/AccountMenu";
+import { Catalog } from "@/widgets/Catalog";
 
 import { HeaderSCK } from "@/widgets/HeaderSCK";
-import { Sale } from "@/widgets/Sale";
 import { Flex } from "antd";
 
-export async function AccountPage({ params }: { params: any }) {
+export default async function CatalogPage({params}: {params: any}) {
   const fetchCity = await (
     await fetch(UrlApiWithDomain.getCity, {
       ...UrlRevalidate.getCity,
@@ -33,9 +31,27 @@ export async function AccountPage({ params }: { params: any }) {
     })
   ).json();
 
+  const UrlProductCatalog = `${UrlApi.getProducts}filter_by_cat/${params.slug}`;
+  const UrlProductCatalogWithDomain = `${UrlApiWithDomain.getProducts}filter_by_cat/${params.slug}`;
+
+  console.log(UrlProductCatalog);
+  console.log(UrlProductCatalogWithDomain);
+
+  const fetchProductCatalog = await (
+    await fetch(UrlProductCatalogWithDomain, {
+      ...UrlRevalidate.getProducts,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+  ).json();
+
+
   const fallback = {
     [UrlApi.getCity]: fetchCity,
     [UrlApi.getCategory]: fetchCategory,
+    [UrlProductCatalog]: fetchProductCatalog
   };
 
   return (
@@ -45,10 +61,10 @@ export async function AccountPage({ params }: { params: any }) {
           fallback={fallback}
           params={params}
         >
-          <Flex vertical={true} gap={"15px"}>
-            <HeaderSCK params={params}/>
+          <Flex vertical={true}>
+            <HeaderSCK params={params} carousel />
             <section>
-              <AccountMenu params={params} />
+              <Catalog params={params} />
             </section>
             <footer style={{position:"relative",width:"100%",bottom:"0"}}>
                 <FooterMobileSCK params={params} />
