@@ -7,6 +7,7 @@ import Image from "next/image";
 import { selectDataByLangCategory } from "@/shared/tools/selectDataByLang";
 import { useLocale } from "next-intl";
 import React from "react";
+import { useGetCityParams } from "@/shared/hook/useGetCityParams";
 const { Text } = Typography;
 
 interface CatalogHoveredProps {
@@ -18,6 +19,7 @@ interface CatalogHoveredProps {
 const CatalogHovered: React.FC<React.HTMLAttributes<HTMLLIElement> & CatalogHoveredProps> = (props) => {
   const { setHoveredElement, Category, isHover } = props;
   const localActive = useLocale();
+  const currentCity = useGetCityParams();
    return (
     <li
       onMouseEnter={() => {
@@ -41,7 +43,7 @@ const CatalogHovered: React.FC<React.HTMLAttributes<HTMLLIElement> & CatalogHove
             />
           )}
           <Link
-            href="#"
+            href={`/${localActive}/${currentCity}/catalog/${Category.slug}`}
             style={{
               color: isHover ? "#ffa600" : "#000000",
             }}

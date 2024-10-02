@@ -78,7 +78,7 @@ export async function MainPage({ params }: { params: any }) {
             <section>
               <Sale params={params} />
             </section>
-            <footer style={{position:"relative",width:"100%",bottom:"0"}}>
+             <footer style={{position:"relative",width:"100%",bottom:"0"}}> 
                 <FooterMobileSCK params={params} />
                 <FooterSCK params={params} />
             </footer>

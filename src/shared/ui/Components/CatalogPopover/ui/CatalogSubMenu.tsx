@@ -5,10 +5,12 @@ import { Space, Typography } from "antd";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { selectDataByLangCategory } from "@/shared/tools/selectDataByLang";
+import { useGetCityParams } from "@/shared/hook/useGetCityParams";
 
 const { Text } = Typography;
 export const CatalogSubMenu = ({ Categories }: { Categories: Category[] }) => {
   const localActive = useLocale();
+  const currentCity = useGetCityParams();
   return (
     <>
       <div className={styles.CatalogSubMenuRoot}>
@@ -26,7 +28,10 @@ export const CatalogSubMenu = ({ Categories }: { Categories: Category[] }) => {
                   />
                 )}
                 <div className={styles.listElementHover}>
-                  <Link href="#" style={{ color: "inherit" }}>
+                  <Link
+                    href={`/${localActive}/${currentCity}/catalog/${Category.slug}`}
+                    style={{ color: "inherit" }}
+                  >
                     <Text underline style={{ color: "inherit" }}>
                       {selectDataByLangCategory(Category, localActive)}
                     </Text>
@@ -34,13 +39,19 @@ export const CatalogSubMenu = ({ Categories }: { Categories: Category[] }) => {
                 </div>
               </Space>
               <ul role="navigation-list">
-              {Category.children.map((SubCategory: Category) => (                
-                  <li role="navigation-element" key={SubCategory.id} className={styles.listElementHover}>
-                    <Link style={{ color: "inherit" }} href={"#"}>
+                {Category.children.map((SubCategory: Category) => (
+                  <li
+                    role="navigation-element"
+                    key={SubCategory.id}
+                    className={styles.listElementHover}
+                  >
+                    <Link 
+                    style={{ color: "inherit" }}
+                    href={`/${localActive}/${currentCity}/catalog/${SubCategory.slug}`}>
                       {selectDataByLangCategory(SubCategory, localActive)}
                     </Link>
-                  </li>                
-              ))}
+                  </li>
+                ))}
               </ul>
             </div>
           ))}

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Сайт в разработке dev.SCK-1.kz",
 };
 
-export default async function RootLayout({
+export default async function Layout({
   children,
   params: { locale, city },
 }: {

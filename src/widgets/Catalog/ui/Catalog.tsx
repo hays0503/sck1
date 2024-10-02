@@ -5,18 +5,30 @@ import { Flex } from "antd";
 
 export default function Catalog({ params }: { params: any }) {
   const products =
-    useFetcherProducts({ 
+    useFetcherProducts({
       as: "filter_by_cat",
-      params: params.slug 
+      params: params.slug,
     }).data ?? [];
 
-  const Filters = ({ params }: { params: any }) => {return <></>};
-  const OneRow = 496;
+  const Filters = ({ params }: { params: any }) => {
+    return (
+      <Flex 
+      justify="center"
+      align="center"
+      style={{ width: "20%", height: "100px", backgroundColor: "violet" }}>
+        Место под Фильтр
+      </Flex>
+    );
+  };
+
   return (
     <Flex style={{ width: "100%" }} justify="center">
-      <Flex style={{ width: "80%",height: OneRow }}>
+      <Flex
+        style={{ width: "80%", height: "100%", backgroundColor: "#f9f9f9f6" }}
+        // justify="space-around"
+      >
         <Filters params={params} />
-        <ProductShowcase params={params} products={products}/>
+        <ProductShowcase params={params} products={products} />
       </Flex>
     </Flex>
   );

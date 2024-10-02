@@ -172,5 +172,10 @@
   "glavnaya": "Үй",
   "dodano-v-favoritki": "Таңдаулыларға қосылды",
   "ubrat-iz-izbrannogo": "Таңдаулылардан өшіру",
-  "it-is-all-nothing-more": "Мұның бәрі, басқа ештеңе жоқ"
+  "it-is-all-nothing-more": "Мұның бәрі, басқа ештеңе жоқ",
+  "sort": "Сұрыптау",
+  "po-ubyvaniyu-ceny": "Төмендейтін баға",
+  "po-vozrastaniyu-ceny": "Өсу бағасы",
+  "bolee-populyarnye": "Танымалырақ",
+  "menee-populyarnye": "Азырақ танымал"
 }

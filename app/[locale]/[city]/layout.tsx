@@ -22,7 +22,7 @@ export async function generateStaticParams() {
   return city;
 }
 
-export default async function RootLayout({
+export default async function Layout({
   children,
   params: { locale, city },
 }: {

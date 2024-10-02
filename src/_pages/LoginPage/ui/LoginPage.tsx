@@ -78,7 +78,7 @@ export default async function LoginPage({ params }: { params: any }) {
             <section>
               <Login params={params} />
             </section>
-            <footer style={{position:"relative",width:"100%",bottom:"0"}}>
+             <footer style={{position:"relative",width:"100%",bottom:"0"}}> 
                 <FooterMobileSCK params={params} />
                 <FooterSCK params={params} />
             </footer>

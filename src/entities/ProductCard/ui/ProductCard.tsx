@@ -71,13 +71,13 @@ export default function ProductCard({
             <div
               style={{
                 position: "relative",
-                width: "200px",
+                width: "150px",
                 height: "230px",
               }}
             >
               <Image
                 alt="product"
-                src={product.list_url_to_image[0]}
+                src={product.list_url_to_image[0]?product.list_url_to_image[0]:'/warningicon.webp'}
                 fill
                 style={{
                   objectFit: "scale-down",

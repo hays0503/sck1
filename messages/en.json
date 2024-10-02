@@ -173,5 +173,10 @@
   "glavnaya": "Home",
   "dodano-v-favoritki": "Added to favorites",
   "ubrat-iz-izbrannogo": "Remove from favorites",
-  "it-is-all-nothing-more": "It is all, nothing more"
+  "it-is-all-nothing-more": "It is all, nothing more",
+  "sort": "Sort",
+  "po-ubyvaniyu-ceny": "Descending price",
+  "po-vozrastaniyu-ceny": "Ascending price",
+  "bolee-populyarnye": "More popular",
+  "menee-populyarnye": "Less popular"
 }

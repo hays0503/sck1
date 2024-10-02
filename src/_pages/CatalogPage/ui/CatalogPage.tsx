@@ -66,7 +66,7 @@ export default async function CatalogPage({params}: {params: any}) {
             <section>
               <Catalog params={params} />
             </section>
-            <footer style={{position:"relative",width:"100%",bottom:"0"}}>
+ <footer style={{position:"relative",width:"100%",bottom:"0"}}> 
                 <FooterMobileSCK params={params} />
                 <FooterSCK params={params} />
             </footer>

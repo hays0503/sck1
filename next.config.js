@@ -5,7 +5,6 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-
   pageExtensions: ["mdx", "md", "jsx", "js", "tsx", "ts"],
   async redirects() {
     return [
@@ -73,8 +72,7 @@ const nextConfig = {
       //Спецификации на товар
       {
         source: "/api/v1/specif/filter_by_prod/:prod_pk",
-        destination:
-          "http://pimenov.kz/api/v1/specif/filter_by_prod/:prod_pk/",
+        destination: "http://pimenov.kz/api/v1/specif/filter_by_prod/:prod_pk/",
       },
 
       // Обработка картинок (проксирование)
@@ -88,6 +86,44 @@ const nextConfig = {
       {
         source: "/basket_api/v1/bascket/:uuid_id",
         destination: "http://pimenov.kz:8989/basket_api/v1/bascket/:uuid_id/",
+      },
+
+      //api по работе с пользователем
+      // Запрос данных пользователя (инфо)
+      {
+        source: "/auth_api/v1/user/info",
+        destination: "http://pimenov.kz:8999/auth_api/v1/user/info",
+      },
+      {
+        source: "/auth_api/v1/token/refresh",
+        destination: "http://pimenov.kz:8999/auth_api/v1/token/refresh",
+      },
+
+      //api по работе с пользователем
+      //Получение ссылки на авторизацию google
+      {
+        source: "/auth_api/v1/auth_user/login/google",
+        destination:
+          "http://pimenov.kz:8999/auth_api/v1/auth_user/login/google/",
+      },
+      //api по работе с пользователем
+      // Создаем пользователя через акаунт google
+      {
+        source: "/auth_api/v1/auth_user/auth/google",
+        destination: "http://pimenov.kz:8999/auth_api/v1/auth_user/auth/google",
+      },
+
+      //api по работе с пользователем
+      //Endpoint для отправки sms-кода
+      {
+        source: "/auth_api/v1/auth_user/login/phone",
+        destination: "http://pimenov.kz:8999/auth_api/v1/auth_user/login/phone",
+      },
+      //api по работе с пользователем
+      //Через данный endpoint будут выданы ключи доступа.
+      {
+        source: "/auth_api/v1/auth_user/auth/phone",
+        destination: "http://pimenov.kz:8999/auth_api/v1/auth_user/auth/phone",
       },
     ];
   },

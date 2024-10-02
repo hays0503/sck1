@@ -170,5 +170,10 @@
   "glavnaya": "Главная",
   "dodano-v-favoritki": "Добавлено в избранное",
   "ubrat-iz-izbrannogo": "Убрать из избранного",
-  "it-is-all-nothing-more": "Это все, ничего больше."
+  "it-is-all-nothing-more": "Это все, ничего больше.",
+  "sort": "Сортировать",
+  "bolee-populyarnye": "Более популярные",
+  "po-vozrastaniyu-ceny": "По возрастанию цены",
+  "po-ubyvaniyu-ceny": "По убыванию цены",
+  "menee-populyarnye": "Менее популярные"
 }
