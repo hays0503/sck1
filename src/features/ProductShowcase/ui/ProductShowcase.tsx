@@ -77,8 +77,8 @@ export default function ProductShowcase({
   };
 
   const sortFunc: { [key: string]: (a: Products, b: Products) => number } = {
-    "min_price": sortProductsMinFunc,
-    "max_price": sortProductsMaxFunc,
+    min_price: sortProductsMinFunc,
+    max_price: sortProductsMaxFunc,
   };
 
   const sortData = filteredProductsCurrentCity.sort(sortFunc[sort]);
@@ -89,24 +89,30 @@ export default function ProductShowcase({
     (pagination - 1) * productsPerPage,
     pagination * productsPerPage
   );
-
+  const { isMobileDevice } = JSON.parse(params.mobile.value);
   return (
     <Flex
       vertical={true}
       gap={"15px"}
       style={{
-        width: "80%",
+        width: `${isMobileDevice ? "100%" : "80%"}`,
         minHeight: "500px",
-        marginBottom: "25px"
+        marginBottom: "25px",
       }}
-      justify="space-between"
+      justify="space-between" //justify={`${isMobileDevice?"center": "space-between"}`}
+      // align="center"
     >
-      <Flex justify="flex-end" style={{ width: "100%", height: "35px" }}>
+      <Flex
+        justify={`${isMobileDevice ? "center" : "flex-end"}`}
+        align="center"
+        style={{ width: "100%", height: "35px" }}
+      >
         <SortMenu value={sort} setValue={setSort} />
       </Flex>
-      <Row gutter={[8, 8]}>
+
+      <Row gutter={[8, 8]} justify={`${isMobileDevice ? "center" : "start"}`}>
         {productsAfterPagination.map((i: Products) => (
-          <Col span={6} key={i.id}>
+          <Col span={isMobileDevice ? 18 : 6} key={i.id}>
             <ProductCard
               key={i.id}
               product={i}
@@ -117,11 +123,10 @@ export default function ProductShowcase({
         ))}
       </Row>
       <Pagination
-
-      align="center"
-      defaultCurrent={1}
-      total={filteredProductsCurrentCity.length}
-      onChange={(page: number) => setPagination(page)}
+        align="center"
+        defaultCurrent={1}
+        total={filteredProductsCurrentCity.length}
+        onChange={(page: number) => setPagination(page)}
       />
     </Flex>
   );

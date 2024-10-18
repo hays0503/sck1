@@ -43,7 +43,7 @@ export default function HeaderMenu({
           {!isMobileDevice && (
             <>
               <AccountButton />
-              <BasketButton />
+              <BasketButton params={params}/>
             </>
           )}
         </Flex>

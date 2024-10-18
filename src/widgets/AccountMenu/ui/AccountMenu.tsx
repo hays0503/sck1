@@ -3,6 +3,8 @@
 import { Flex, Radio, Space, Tabs, Typography } from "antd";
 import { RightOutlined, LogoutOutlined } from "@ant-design/icons";
 import Favorites from "./Favorites";
+import { Exit } from "@/features/Exit";
+import { UserInfo } from "@/features/UserInfo";
 
 const { Text } = Typography;
 
@@ -47,7 +49,7 @@ const items = [
   {
     key: '1',
     label: <TabButton>Профиль</TabButton>,
-    children: <div>Личный кабинет</div>,
+    children: <UserInfo/> ,
   },
   {
     key: '2',
@@ -76,7 +78,7 @@ const items = [
         Выход
       </TabButton>
     ),
-    children: <div>Выход</div>,
+    children: <Exit/>,
   },
 ];
 

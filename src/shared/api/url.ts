@@ -8,6 +8,7 @@ const UrlApi = {
   getProducts: `/api/v1/products/`,
 
   getBasketApi: `/basket_api/v1/bascket`,
+  getOrderApi: `/basket_api/v1/order`,
 
   getUserInfoApi: `/auth_api/v1/user/info`,
   getUserRefreshTokenApi: `/auth_api/v1/token/refresh`,
@@ -27,6 +28,7 @@ const UrlApiWithDomain = {
   getProducts: `${ApiUrl}${UrlApi.getProducts}`,
 
   getBasketApi: `${ApiUrl}${UrlApi.getBasketApi}`,
+  getOrderApi: `${ApiUrl}${UrlApi.getOrderApi}`,
 
   getUserInfoApi: `${ApiUrl}${UrlApi.getUserInfoApi}`,
 

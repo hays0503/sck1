@@ -20,7 +20,6 @@ export default function Login({ params }: { params: any }) {
 
   const handleSubmit = () => {
     // Логика отправки SMS-кода
-    console.log("SMS-код отправлен на номер:", phoneNumber);
     fetch(UrlApi.getUserSmsUrl, {
       method: "POST",
       headers: {
@@ -46,13 +45,12 @@ export default function Login({ params }: { params: any }) {
           message: "Не вышло отправить SMS-код",
           description: error.message,
         });
-      });
+      });      
   };
 
   // Если SMS отправлен, отображаем компонент для ввода кода, иначе - ввод номера
   if (isSmsSent) {
-    console.log("SMS-код отправлен на номер:", phone_number_id);
-    return (
+     return (
       <SmsCode
         params={params}
         numberPhone={phoneNumber}
@@ -81,20 +79,7 @@ export default function Login({ params }: { params: any }) {
       });
 
     if (UrlToGoogle) {
-      // window.open(UrlToGoogle, "blank");
-      fetch(UrlToGoogle, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      })
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          console.log(data);
-        });
+      window.open(UrlToGoogle, "blank");
     }
   };
 

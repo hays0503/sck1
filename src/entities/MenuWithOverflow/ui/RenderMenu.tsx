@@ -20,7 +20,7 @@ const RenderMenu = ({ Categories, role }: { Categories: Category[], role?: strin
             backgroundColor: "red",
           }}>
             <>
-            <ButtonNavigation item={data} role={role}/>
+            <ButtonNavigation item={data} role={role} slug={item.slug}/>
             </>
           </Tooltip>
         );

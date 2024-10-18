@@ -6,45 +6,79 @@ import { useGetCityParams } from "@/shared/hook/useGetCityParams";
 import useSelectCurrentCity from "@/shared/hook/useSelectCurrentCity";
 import beautifulCost from "@/shared/tools/beautifulCost";
 import { iBasketItem } from "@/shared/types/basket";
+import Link from "next/link";
+import { useTranslations } from "next-intl";
 const { Text } = Typography;
 
-export default function BasketButton() {
+export default function BasketButton({ params }: { params: any }) {
+
+  const t = useTranslations();
+
   const {
-    get: { basketGet },
+    get,
     isLoading: { basketIsLoading },
   } = useBasketView();
 
-  
   const currentCityEN = useGetCityParams();
   const currentCityRU = useSelectCurrentCity("en", currentCityEN)?.name_city!;
 
-  const badge = basketGet?.basket_items?.reduce(
+  const basketGet = get?.basketGet?.basket_items?.filter((i: iBasketItem) =>
+    i?.prod?.price?.hasOwnProperty(currentCityRU)
+  );
+
+  const badge = basketGet?.reduce(
     (acc: number, item: any) => acc + item.count,
     0
   );
 
-  const total = basketGet?.basket_items?.reduce(
-    (acc: number, item: iBasketItem) => acc + item.count * (item?.prod?.price?.[currentCityRU]??0),
+  const total = basketGet?.reduce(
+    (acc: number, item: iBasketItem) =>
+      acc + item.count * (item?.prod?.price?.[currentCityRU] ?? 0),
     0
   );
 
+  const uuid_id = JSON.parse(window.localStorage.getItem("uuid_id") ?? "{}");
 
   return (
     <>
       <Popover
         trigger={"click"}
         placement="bottomRight"
-        content={basketIsLoading ? null : <BasketBody />}
+        content={
+          basketIsLoading ? null : (
+            <Flex vertical style={{ width: "100%" }}>
+              <BasketBody params={params} />
+              <Flex justify="center" style={{ width: "100%" }}>
+                <span
+                  style={{
+                    cursor: "pointer",
+                    fontSize: "16px",
+                    fontWeight: "400",
+                    lineHeight: "20px",
+                    backgroundColor: "#3e54cf",
+                    padding: "10px",
+                    borderRadius: "4px",
+                    color: "white",
+                  }}
+                >
+                  <Link
+                    href={`/${params.locale}/${params.city}/order/${uuid_id}`}
+                    style={{ color: "inherit" }}
+                  >
+                    {t("go-to-order")}
+                  </Link>
+                </span>
+              </Flex>
+            </Flex>
+          )
+        }
       >
         <Button
           size="large"
           style={{ backgroundColor: "#3E54CF", border: "4px" }}
         >
           <Flex justify="center" align="center">
-            <Badge
-              count={badge}
-              offset={[-45, 5]}
-            >
+            <Badge count={badge} offset={[-45, 5]}>
               <Flex
                 justify="center"
                 align="center"
@@ -84,7 +118,9 @@ export default function BasketButton() {
                 height: "44px",
               }}
             >
-              <Text style={{ color: "white" }}>{beautifulCost(total??0)}</Text>
+              <Text style={{ color: "white" }}>
+                {beautifulCost(total ?? 0)}
+              </Text>
             </Flex>
           </Flex>
         </Button>

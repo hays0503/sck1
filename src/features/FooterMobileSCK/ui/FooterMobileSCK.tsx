@@ -136,7 +136,7 @@ export default function FooterMobileSCK({ params }: { params: any }) {
               </BasketMobileButton>
             ),
             key: "3",
-            children: <BasketBody/>,
+            children: <BasketBody params={params}/>,
           },
           {
             label: (

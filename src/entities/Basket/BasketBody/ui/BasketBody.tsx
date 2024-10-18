@@ -7,11 +7,12 @@ import { Products } from "@/shared/types/products";
 import { Button, Divider, Flex, Typography } from "antd";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
+import Link from "next/link";
 import { CSSProperties } from "react";
 
 const { Text, Title, Paragraph } = Typography;
 
-export default function BasketBody() {
+export default function BasketBody({params}: {params: any}) {
   const {
     get: { basketGet },
   } = useBasketView();
@@ -94,22 +95,24 @@ export default function BasketBody() {
     );
 
     const text = (
-      <a
-        href={`/${localActive}/product/${product.slug}`}
-        style={{ cursor: "pointer" }}
-      >
-        <Paragraph
-          ellipsis={{
-            rows: 3,
-          }}
+      <div style={{ width: "165px" }}>
+        <a
+          href={`/${localActive}/product/${product.slug}`}
+          style={{ cursor: "pointer" }}
         >
-          {product.name_product}
-        </Paragraph>
-      </a>
+          <Paragraph
+            ellipsis={{
+              rows: 3,
+            }}
+          >
+            {product.name_product}
+          </Paragraph>
+        </a>
+      </div>
     );
 
     const discount_text = (
-      <div
+      <span
         style={{
           textAlign: "center",
           width: "50px",
@@ -118,57 +121,87 @@ export default function BasketBody() {
           color: "white",
           padding: "2px",
           borderRadius: "5px",
+          backgroundColor: "red",
         }}
-      >{` -${discount} % `}</div>
+      >{`-${discount} %`}</span>
     );
 
-    const fontText: CSSProperties  = {
+    const fontText: CSSProperties = {
       fontSize: "12px",
-    }
+    };
 
     const total = ({ price, sale }: { price: number; sale?: boolean }) => (
-      <Flex justify="space-between">
-        <Text strong style={fontText}>{sale ? t("new-cost") : t("cost")}</Text>
-        <Text strong style={fontText}> {beautifulCost(price)}</Text>
-        <Text strong style={fontText}>*</Text>
-        <Text strong style={fontText}>{item.count}</Text>
-        <Text strong style={fontText}>=</Text>
-        <Text strong style={fontText}>{beautifulCost(price * item.count)} </Text>
+      <Flex>
+        <Text strong={!sale} disabled={sale} style={fontText}>
+          {`${sale ? t("new-cost") : t("cost")} ${beautifulCost(price)} * ${
+            item.count
+          } = ${beautifulCost(price * item.count)}`}
+        </Text>
       </Flex>
     );
 
     return (
       <>
         {old_price ? (
-          <>
-            <Flex justify="flex-start" align="center" style={{ width: "100%" }}>
+          <Flex
+            vertical
+            // style={{ width: "300px" }}
+          >
+            <Flex
+              justify="flex-start"
+              align="center"
+              style={{
+                // width: "300px",
+                backgroundColor: "whitesmoke",
+              }}
+            >
               {buttons}
               {picture}
               {text}
               {discount_text}
             </Flex>
-            {total({ price: old_price, sale: true })}
-          </>
+            <Flex vertical>
+              {total({ price: old_price, sale: true })}
+              {total({ price: price, sale: false })}
+            </Flex>
+          </Flex>
         ) : (
-          <>
-            <Flex justify="flex-start" align="center" style={{ width: "100%" }}>
+          <div
+          // style={{ width: "300px" }}
+          >
+            <Flex
+              justify="flex-start"
+              align="center"
+              // style={{ width: "100%" }}
+            >
               {buttons}
               {picture}
               {text}
             </Flex>
             {total({ price: price, sale: false })}
-          </>
+          </div>
         )}
+        <Divider />
       </>
     );
   };
 
   const isEmpty = basketGet?.basket_items?.length === 0;
 
+  const badge =
+    basketGet?.basket_items?.reduce(
+      (a: number, b: iBasketItem) =>
+        a + b.count * (b?.prod?.price?.[currentCityRU] ?? 0),
+      0
+    ) ?? 0;
+
+  const uuid_id = JSON.parse(window.localStorage.getItem("uuid_id") ?? "{}");
+
   return (
     <>
       <Flex
-        style={{ width: "320px" }}
+        // style={{ width: "320px" }}
+        style={{ width: "100%", height: "100%" }}
         vertical
         justify="space-between"
         gap={10}
@@ -178,7 +211,7 @@ export default function BasketBody() {
           <>
             <Flex
               style={{
-                width: "320px",
+                // width: "320px",
                 height: "300px",
                 overflow: "auto",
                 scrollbarWidth: "thin",
@@ -189,7 +222,6 @@ export default function BasketBody() {
               {basketGet?.basket_items?.map((item: iBasketItem) => (
                 <Flex key={item.prod_id} vertical>
                   <Item product={item.prod} item={item} />
-                  <Divider />
                 </Flex>
               ))}
             </Flex>
@@ -199,12 +231,12 @@ export default function BasketBody() {
                 {beautifulCost(
                   basketGet?.basket_items?.reduce(
                     (a: number, b: iBasketItem) =>
-                      a + b.count * (b?.prod?.price?.[currentCityRU]??0),
+                      a + b.count * (b?.prod?.price?.[currentCityRU] ?? 0),
                     0
-                  )??0
+                  ) ?? 0
                 )}
               </Title>
-            </Flex>
+            </Flex>            
           </>
         )}
       </Flex>

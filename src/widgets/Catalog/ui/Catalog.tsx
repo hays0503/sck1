@@ -10,12 +10,15 @@ export default function Catalog({ params }: { params: any }) {
       params: params.slug,
     }).data ?? [];
 
+  const { isMobileDevice } = JSON.parse(params.mobile.value);
   const Filters = ({ params }: { params: any }) => {
+    const { isMobileDevice } = JSON.parse(params.mobile.value);
     return (
-      <Flex 
-      justify="center"
-      align="center"
-      style={{ width: "20%", height: "100px", backgroundColor: "violet" }}>
+      <Flex
+        justify="center"
+        align="center"
+        style={{ width: `${isMobileDevice?"100%": "20%"}`, height: "100px", backgroundColor: "violet" }}
+      >
         Место под Фильтр
       </Flex>
     );
@@ -25,7 +28,8 @@ export default function Catalog({ params }: { params: any }) {
     <Flex style={{ width: "100%" }} justify="center">
       <Flex
         style={{ width: "80%", height: "100%", backgroundColor: "#f9f9f9f6" }}
-        // justify="space-around"
+        justify="center"
+        vertical={isMobileDevice}
       >
         <Filters params={params} />
         <ProductShowcase params={params} products={products} />

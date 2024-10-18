@@ -7,11 +7,7 @@ import { HeartOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import styles from "./ProductCard.module.scss";
 import beautifulCost from "@/shared/tools/beautifulCost";
-import
-{ message }
-from
-"antd"
-;
+import { message } from "antd";
 
 import { useBasketMutate } from "@/shared/hook/useBasket";
 import { useLocalStorage } from "usehooks-ts";

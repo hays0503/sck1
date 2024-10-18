@@ -88,6 +88,12 @@ const nextConfig = {
         destination: "http://pimenov.kz:8989/basket_api/v1/bascket/:uuid_id/",
       },
 
+      // api заказа
+      {
+        source: "/basket_api/v1/order",
+        destination: "http://pimenov.kz:8989/basket_api/v1/order/",
+      },
+
       //api по работе с пользователем
       // Запрос данных пользователя (инфо)
       {

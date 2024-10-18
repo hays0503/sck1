@@ -17,19 +17,15 @@ export default function CatalogMobile({ params }: { params: any }) {
 
   const toCategoryNext = (id: number) => {
     if (selectCategories.length === 0) {
-      console.log(id);
       const category = categories.find((category) => category.id === id);
-      console.log(category);
       if (category) {
         stack.current.push(category.children);
         setSelectCategories(category.children);
       }
     } else {
-      console.log(id);
       const category = selectCategories.find(
         (category: Category) => category.id === id
       );
-      console.log(category);
       if (category) {
         stack.current.push(category.children);
         setSelectCategories(category.children);
@@ -39,8 +35,6 @@ export default function CatalogMobile({ params }: { params: any }) {
 
   const toCategoryBack = () => {
     const last = stack.current.length-2;
-    console.log(last)
-    console.log(stack.current)
     if(last >= 0){
       setSelectCategories(stack.current[last]);
       stack.current.pop();
@@ -78,7 +72,7 @@ export default function CatalogMobile({ params }: { params: any }) {
                 align="center"
                 style={{ width: "90%" }}
               >
-                <Link href={`/${localeActive}/${params.city}/products-in-category/${item.slug}/0/12/popular-first`}>
+                <Link href={`/${localeActive}/${params.city}/catalog/${item.slug}`}>
                 <Flex
                   style={{ height: "100%", width: "90%" }}
                   align="center"

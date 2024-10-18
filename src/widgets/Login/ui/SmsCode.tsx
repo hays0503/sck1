@@ -8,10 +8,11 @@ interface SmsCodeProps {
   params: any;
   numberPhone: string;
   phone_number_id: string;
+  onSuccess?: any;
 }
 
 const SmsCode: React.FC<SmsCodeProps> = React.memo(
-  ({ params, numberPhone, phone_number_id }) => {
+  ({ params, numberPhone, phone_number_id, onSuccess }) => {
     const [code, setCode] = useState<string[]>(["", "", "", ""]);
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const [error, setError] = useState<boolean>(false);
@@ -21,6 +22,7 @@ const SmsCode: React.FC<SmsCodeProps> = React.memo(
     const [api, contextHolder] = notification.useNotification();
     const [accessToken, setAccessToken] = useLocalStorage("accessToken", "");
     const [refreshToken, setRefreshToken] = useLocalStorage("refreshToken", "");
+
     const setRef = useCallback((el: HTMLInputElement | null, index: number) => {
       inputRefs.current[index] = el;
     }, []);
@@ -68,34 +70,39 @@ const SmsCode: React.FC<SmsCodeProps> = React.memo(
       }
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async() => {
       if (code.join("").length !== 4) {
         setError(true); // Устанавливаем ошибку, если код введён не полностью
         return;
       }
       setError(false);
-      console.log("Введенный код:", code.join(""));
 
-      fetch(
-        `${UrlApi.getUserSmsAuth}?code=${code.join(
-          ""
-        )}&phone_number_id=${phone_number_id}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      )
+      const url = `${UrlApi.getUserSmsAuth}?code=${code.join(
+        ""
+      )}&phone_number_id=${phone_number_id}`;
+
+      fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      })
         .then((response) => {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
-          setAccessToken(data.access.token);
-          setRefreshToken(data.refresh.token);
-          window.location.href = "/";
+          console.log(onSuccess);
+          const accessToken: string = data.access.token as string;
+          const refreshToken: string = data.refresh.token as string;
+          if (accessToken && refreshToken) {
+            if (window) {
+              setAccessToken(accessToken);
+              setRefreshToken(refreshToken);
+              onSuccess && onSuccess(accessToken);
+              window.location.href = "/";
+            }
+          }
         })
         .catch((error) => {
           api.error({
@@ -122,7 +129,6 @@ const SmsCode: React.FC<SmsCodeProps> = React.memo(
 
     const handleResend = () => {
       if (isResendAllowed) {
-        console.log("Повторная отправка кода");
         // Логика повторной отправки кода
         setTimer(120); // Сбрасываем таймер обратно на 2 минуты
         setIsResendAllowed(false);
