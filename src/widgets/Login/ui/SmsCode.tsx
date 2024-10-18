@@ -11,6 +11,8 @@ interface SmsCodeProps {
   onSuccess?: any;
 }
 
+
+
 const SmsCode: React.FC<SmsCodeProps> = React.memo(
   ({ params, numberPhone, phone_number_id, onSuccess }) => {
     const [code, setCode] = useState<string[]>(["", "", "", ""]);
@@ -211,5 +213,7 @@ const SmsCode: React.FC<SmsCodeProps> = React.memo(
     );
   }
 );
+
+SmsCode.displayName = 'SmsCode';
 
 export default SmsCode;

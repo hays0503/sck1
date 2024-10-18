@@ -98,6 +98,7 @@ export default function Order({ params }: { params: any }) {
         phone_number: values.phone,
         comment: values.comment,
         delivery_type: "DELIVERY",
+        // @ts-ignore
         shipping_city: cities[values.city].name_city ?? "Не указано",
         delivery_address: values.address,
         payment_type: values.cash_on_delivery

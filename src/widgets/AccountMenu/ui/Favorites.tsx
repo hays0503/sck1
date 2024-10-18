@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Avatar, Button, Divider, List, Skeleton } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useGetFavoritesProduct } from "../api";
+// import { useGetFavoritesProduct } from "../api";
 import { useLocalStorage } from "usehooks-ts";
 import { ProductsDetail } from "@/shared/types/productsDetail";
 import { Products } from "@/shared/types/products";

@@ -12,7 +12,7 @@ import { HeaderSCK } from "@/widgets/HeaderSCK";
 import { Sale } from "@/widgets/Sale";
 import { Flex } from "antd";
 
-export async function AccountPage({ params }: { params: any }) {
+export default async function AccountPage({ params }: { params: any }) {
   const fetchCity = await (
     await fetch(UrlApiWithDomain.getCity, {
       ...UrlRevalidate.getCity,

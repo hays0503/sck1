@@ -79,8 +79,7 @@ export default function FooterSCK({ params }: { params: any }) {
               Тел. +7 705 655 00 00, +7 705 552 21 57
             </p>
             <p>
-              АО "Народный Банк Казахстана"
-              <br />
+            {`АО "Народный Банк Казахстана"`}<br />
               БИК HSBKKZKX
               <br />
               ИИК KZ93601A251001294031

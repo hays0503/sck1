@@ -1,1 +1,1 @@
-export {useGetFavoritesProduct} from './getFavoritesProduct'
+// export {useGetFavoritesProduct} from './getFavoritesProduct'

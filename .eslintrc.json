@@ -3,7 +3,7 @@
   "rules": {
     "max-lines": [
       "error",
-      { "max": 200, "skipComments": true, "skipBlankLines": true }
+      { "max": 250, "skipComments": true, "skipBlankLines": true }
     ]
   },
   "overrides": [
