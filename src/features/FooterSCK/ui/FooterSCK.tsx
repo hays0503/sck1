@@ -8,11 +8,13 @@ import style from "./FooterSCK.module.scss";
 import { LogoSCK } from "@/entities/LogoSCK";
 const { Title, Text } = Typography;
 
+
+
 export default function FooterSCK({ params }: { params: any }) {
   
   const t = useTranslations();
-
   const localActive = useLocale();
+
   return (
     <div className={style.footer}>
       <Flex justify="center" align="center" style={{padding:"20px"}}>
@@ -69,6 +71,19 @@ export default function FooterSCK({ params }: { params: any }) {
             </Title>
             <p>
               <Text>БИН 160 440 027 443</Text>
+            </p>
+            <p>
+              Республика Казахстан, г. Петропавловск, ул. Букетова 31А, БЦ «Алем», офис 5
+            </p>
+            <p>
+              Тел. +7 705 655 00 00, +7 705 552 21 57
+            </p>
+            <p>
+              АО "Народный Банк Казахстана"
+              <br />
+              БИК HSBKKZKX
+              <br />
+              ИИК KZ93601A251001294031
             </p>
             <p>
               <Link href={`/${localActive}/${params.city}/user-agreement`}>
